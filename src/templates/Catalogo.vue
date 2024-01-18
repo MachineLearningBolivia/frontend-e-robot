@@ -78,13 +78,18 @@
       <div class="flex flex-col items-start p-4 grow">
         <p class="font-medium typography-text-base">{{ name }}</p>
         <p class="mt-1 mb-4 font-normal typography-text-sm text-neutral-700">{{ description }}</p>
-        <SfButton size="sm" variant="tertiary" class="relative mt-auto">{{ button || 'Readmore' }}</SfButton>
+        <SfButton size="sm" variant="tertiary" class="relative mt-auto" >
+          <router-link :to="{ name: 'producto', params: { id: name }}">{{ button || 'Saber más' }}</router-link>
+        
+        </SfButton>
       </div>
     </div>
     <SfButton v-if="!allItemsLoaded" class="w-full mt-4" @click="loadMore"> Mostrar Más </SfButton>
   </div>
 </template>
 <script lang="ts" setup>
+// Importa useRouter desde vue-router
+import { useRoute, useRouter } from 'vue-router';
 //buscador
 import { offset } from '@floating-ui/vue';
 import { watchDebounced } from '@vueuse/shared';
@@ -117,6 +122,7 @@ async function loadData() {
     items.value = res.data;
     itemsDisplay.value = items.value.data;
     showCard.value = Array(itemsDisplay.value.length).fill(false);
+    showCard.value.fill(true, 0, 3);
     load.value = false;
     // Filtrar los productos según el término de búsqueda actual
     filterProducts(inputModel.value);
@@ -289,7 +295,7 @@ const mockAutocompleteRequest = async (phrase: string) => {
         const rest = product.name.substring(index + phrase.length);
         return { highlight, rest, product };
       });
-    console.log(results); 
+   // console.log(results); 
     return results;
   } catch (error) {
     console.error("Error al obtener sugerencias de autocompletado", error);
