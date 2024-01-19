@@ -6,7 +6,7 @@
       <SfIconSell size="sm" class="mr-1.5" />
       Sale
     </div>
-    <h1 class="mb-1 font-bold typography-headline-4">Mini Foldable Drone with HD Camera FPV Wifi RC Quadcopter</h1>
+      <h1 class="mb-1 font-bold typography-headline-4">{{productId}}  Mini Foldable Drone with HD Camera FPV Wifi RC Quadcopter</h1>
     <strong class="block font-bold typography-headline-3">$2,345.99</strong>
     <div class="inline-flex items-center mt-4 mb-2">
       <SfRating size="xs" :value="3" :max="5" />
@@ -112,7 +112,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import {
   SfButton,
   SfCounter,
@@ -132,6 +132,8 @@ import {
 } from '@storefront-ui/vue';
 import { clamp } from '@storefront-ui/shared';
 import { useCounter } from '@vueuse/core';
+import { useRoute } from 'vue-router';
+
 
 const inputId = useId();
 const min = ref(1);
@@ -142,4 +144,29 @@ function handleOnChange(event: Event) {
   const nextValue = parseFloat(currentValue);
   set(clamp(nextValue, min.value, max.value));
 }
+//cargar Producto
+const producto = ref(null);
+const productId = ref(null); 
+const route = useRoute(); 
+const cargarProducto = () => {
+  // Obtén el ID del producto de los parámetros de la ruta
+  productId.value = route.params.id;
+  console.log(productId);
+  // Simula una llamada a una API para obtener la información del producto
+  // Reemplaza esto con la lógica de carga real de tu aplicación
+  // Por ejemplo, podrías hacer una solicitud HTTP para obtener la información del servidor
+  // o cargarla desde algún almacén de datos local.
+  // Aquí, simplemente se simula un objeto de producto.
+  const mockProduct = {
+    id: productId,
+    nombre: 'Nombre del Producto',
+    descripcion: 'Descripción del Producto',
+    // ... otras propiedades del producto
+  };
+
+  // Asigna la información del producto a la variable reactiva
+  producto.value = mockProduct;
+};
+// Llama al método cargarProducto cuando se monta el componente
+onMounted(cargarProducto);
 </script>
