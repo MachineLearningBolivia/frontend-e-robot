@@ -1,0 +1,155 @@
+<template>
+  <section id="division" class="pt-10 pb-10 bg-gray-100">
+    <div class="container mx-auto">
+      <h2 class="text-center mb-8 text-3xl font-bold text-orange-500">Division</h2>
+      <div class="flex flex-wrap justify-center mt-5">
+        <div v-for="card in cards" :key="card.id" class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 mb-8">
+          <div class="card-wrapper" @mouseover="toggleOverlay(card.id)" @mouseleave="toggleOverlay(card.id)">
+            <div class="card mb-4">
+              <div class="img-wrapper relative overflow-hidden">
+                <img :src="card.imageSrc" :alt="card.imageAlt" class="w-full h-82 object-cover rounded" />
+                <div v-show="card.hovered" class="img-overlay absolute top-0 left-0 w-full h-full bg-black opacity-60 rounded"></div>
+                <div class="card-hover-text absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">
+                  <p>{{ card.hoverText }}</p>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text text-2xl font-bold text-center">{{ card.description }}</p>
+              </div>
+            </div>
+          </div>
+          <!-- Nuevo texto con hipervínculo debajo de cada tarjeta -->
+          <div class="text-center mt-2">
+            <a v-if="card.id === 1" href="https://www.facebook.com/profile.php?id=100083152845774&sk=about" class="docs-link" target="_blank">Nuestro Facebook</a>
+            <a v-if="card.id === 2" href="https://www.facebook.com/EROBOTBOLIVIA/" class="docs-link" target="_blank">Nuestro Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+import drimecImage from "../assets/drimec.jpg";
+import eRobotImage from "../assets/E-ROBOT.png";
+
+export default {
+  data() {
+    return {
+      cards: [
+        {
+          id: 1,
+          imageSrc: drimecImage,
+          imageAlt: "Image 1",
+          description: "Drimec",
+          hoverText: "Consruccion y diseño maquinas industriales",
+          hovered: false,
+        },
+        {
+          id: 2,
+          imageSrc: eRobotImage,
+          imageAlt: "Image 2",
+          description: "E-ROBOT",
+          hoverText: "Cursos y materiales relacionados a la robótica y electrónica, Placas arduino, mini computadoras, raspberry pi, microcontroladores y software libre.",
+          hovered: false,
+        },
+      ],
+    };
+  },
+  methods: {
+    toggleOverlay(cardId) {
+      this.cards.forEach((card) => {
+        card.hovered = card.id === cardId;
+      });
+    },
+  },
+};
+</script>
+
+<style scoped>
+/* Estilos de imagen y overlay */
+.custom-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  border-radius: 40px;
+  transition: opacity 0.3s ease;
+}
+
+.card-wrapper:hover .img-overlay {
+  opacity: 1;
+}
+
+.card-hover-text {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.card-wrapper:hover .card-hover-text {
+  display: block;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-text {
+  color: #000000;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.bigger-text {
+  font-size: 24px;
+  color: rgb(240, 98, 4);
+  font-weight: bold;
+}
+
+/* Nuevo estilo para el enlace de la documentación */
+.docs-link {
+  color: #000000;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.docs-link:hover {
+  color: orange; /* Cambia a naranja al pasar el ratón */
+}
+
+.tools-title {
+  color: orange;
+  font-weight: bold;
+}
+</style>
