@@ -1,7 +1,25 @@
 <template>
-  <nav :class="{ 'bg-transparent': isTransparent, 'bg-black': !isTransparent }" class="sticky top-0 z-50">
-    <router-link to="/" class="text-white mr-4">Catalogo</router-link>
+  <nav :class="{ 'bg-transparent': isTransparent, 'bg-black': !isTransparent }" class="sticky top-0 z-50 h-20 flex items-center justify-between">
+    <div class="flex items-center">
+      <img
+        src="../src/assets/E-ROBOT-removebg.png"
+        alt="Logo"
+        class="h-16 mr-4"
+      />
+    </div>
+    <router-link to="/" class="text-white">Catalogo</router-link>
     <router-link to="/inicioo" class="text-white">Inicio</router-link>
+    <a
+        href="https://wa.me/59162426763"
+        target="_blank"
+        class="navbar-text m-3 d-flex justify-content-end text-white"
+      >
+        <img
+          src="../src/assets/wasa-removed.png"
+          alt="WhatsApp"
+          class="h-16 mr-4 justify-end"
+        />
+      </a>
   </nav>
   <div>
     <div class="body-container">

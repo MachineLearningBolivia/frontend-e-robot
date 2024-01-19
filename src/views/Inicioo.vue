@@ -2,8 +2,8 @@
   <body>
     <CoverImage />
     <PageDescription />
-    <TolSection />
     <MockupsPage />
+    <TolSection />
   </body>
   <Footer></Footer>
 </template>

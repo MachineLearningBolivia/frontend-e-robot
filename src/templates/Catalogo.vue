@@ -1,4 +1,5 @@
 <template>
+  <br><br><br>
   <div class="mb-4">
     <h2>Catálogo de Productos</h2>
     <form ref="referenceRef" role="search" class="relative" @submit.prevent="submit">

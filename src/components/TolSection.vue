@@ -1,7 +1,7 @@
 <template>
   <section id="division" class="pt-10 pb-10 bg-gray-100">
     <div class="container mx-auto">
-      <h2 class="text-center mb-8 text-3xl font-bold text-orange-500">Division</h2>
+      <h2 class="text-center mb-8 text-3xl font-bold text-orange-500">Tambien te puede interesar</h2>
       <div class="flex flex-wrap justify-center mt-5">
         <div v-for="card in cards" :key="card.id" class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 mb-8">
           <div class="card-wrapper" @mouseover="toggleOverlay(card.id)" @mouseleave="toggleOverlay(card.id)">
@@ -22,6 +22,7 @@
           <div class="text-center mt-2">
             <a v-if="card.id === 1" href="https://www.facebook.com/profile.php?id=100083152845774&sk=about" class="docs-link" target="_blank">Nuestro Facebook</a>
             <a v-if="card.id === 2" href="https://www.facebook.com/EROBOTBOLIVIA/" class="docs-link" target="_blank">Nuestro Facebook</a>
+            <a v-if="card.id === 3" href="https://www.facebook.com/MACHINELEARNINGBOLIVIA" class="docs-link" target="_blank">Nuestro Facebook</a>
           </div>
         </div>
       </div>
@@ -30,9 +31,9 @@
 </template>
 
 <script>
-import drimecImage from "../assets/drimec.jpg";
-import eRobotImage from "../assets/E-ROBOT.png";
-
+import drimecImage from "../assets/drimecr.png";
+import eRobotImage from "../assets/E-ROBOT-removebg.png";
+import machineImage from "../assets/machinelearning.jpg"
 export default {
   data() {
     return {
@@ -51,6 +52,14 @@ export default {
           imageAlt: "Image 2",
           description: "E-ROBOT",
           hoverText: "Cursos y materiales relacionados a la robótica y electrónica, Placas arduino, mini computadoras, raspberry pi, microcontroladores y software libre.",
+          hovered: false,
+        },
+        {
+          id: 3,
+          imageSrc: machineImage,
+          imageAlt: "Image 3",
+          description: "Machine Learning",
+          hoverText: "Asesorías y capacitaciones en cálculo estructural, diseño mecánico, diseño de maquinaria, estructuras metálicas, diseño electrónico, mecatrónico y prototipado.",
           hovered: false,
         },
       ],

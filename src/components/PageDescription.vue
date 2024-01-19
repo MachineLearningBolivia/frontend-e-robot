@@ -20,9 +20,9 @@
 export default {
   data() {
     return {
-      title: "Machine learning",
+      title: "E-ROBOT",
       description:
-        "Se establece como un emprendimiento boliviano dedicado a brindar asesoramiento profesional en diversas áreas empresariales. Brindar asistencia integral y personalizada a todos nuestros clientes, mediante servicios de consultoría, asesoría y capacitación, con el fin de contribuir en la oportuna toma de decisiones. Se compromete a promover la cultura de valores profesionales en sus clientes.",
+        "Cursos y materiales relacionados a la robótica y electrónica, Placas arduino, mini computadoras, raspberry pi, microcontroladores y software libre.",
     };
   },
 };

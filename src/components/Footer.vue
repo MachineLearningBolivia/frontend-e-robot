@@ -4,12 +4,12 @@
       <div class="container mx-auto flex items-center">
         <!-- Logo a la izquierda -->
         <div class="w-1/5">
-          <img src="../assets/titulo_machinelearning-removebg-preview.png" alt="Logo" class="w-full h-auto" />
+          <img src="../assets/titulo robot.png" alt="Logo" class="w-full h-auto" />
         </div>
         <div class="w-4/5">
           <div class="text-center">
             <!-- Texto genérico -->
-            <p class="mb-2">&copy; 2023 Machine Learning. Todos los derechos reservados.</p>
+            <p class="mb-2">&copy; 2023 E-ROBOT. Todos los derechos reservados.</p>
             <p class="mb-2">Términos de Servicio | Política de Privacidad</p>
           </div>
         </div>

@@ -3,7 +3,7 @@
     <div class="position-relative mb-5">
       <img
         class="img-fluid"
-        src="../assets/titulo_machinelearning-verde.png"
+        src="../assets/robotica.jpg"
         alt="Image Cover"
       />
       <div

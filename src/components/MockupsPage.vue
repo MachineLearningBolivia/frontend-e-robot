@@ -1,7 +1,7 @@
 <template>
   <section id="mockups" class="pt-5 pb-5 bg-gray-100">
     <div class="container mx-auto">
-      <h2 class="text-center mb-4 text-3xl font-bold text-orange-500">Algunos de nuestros diseños</h2>
+      <h2 class="text-center mb-4 text-3xl font-bold text-orange-500">Algunos de nuestros cursos</h2>
       <div class="flex flex-wrap justify-center">
         <div v-for="(mockup, index) in mockups" :key="index" class="w-full md:w-1/4 p-4">
           <img :src="mockup.imageSrc" :alt="mockup.imageAlt" class="w-full h-82 object-cover" />
@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import envolvedoraImage from "../assets/envolvedora.jpg";
-import tripodeImage from "../assets/tripode.jpg";
-import termoformadoraImage from "../assets/termoformadora.jpg";
-import cncImage from "../assets/cnc.jpg";
+import envolvedoraImage from "../assets/curso1.jpg";
+import tripodeImage from "../assets/curso2.jpg";
+import termoformadoraImage from "../assets/curso3.jpg";
+import cncImage from "../assets/curso4.jpg";
 
 export default {
   data() {
