@@ -3,85 +3,61 @@
   <div class="mb-4">
     <h2>Catálogo de Productos</h2>
     <form ref="referenceRef" role="search" class="relative" @submit.prevent="submit">
-    <div class="flex">
-      <SfInput
-        ref="inputRef"
-        v-model="inputModel"
-        wrapper-class="w-full !ring-0 active:!ring-0 hover:!ring-0 focus-within:!ring-0 border-y border-l border-neutral-200 rounded-r-none hover:border-primary-800 active:border-primary-700 active:border-y-2 active:border-l-2 focus-within:border-y-2 focus-within:border-l-2 focus-within:border-primary-700"
-        aria-label="Search"
-        placeholder="Buscar 'Maquina de' or 'Cortadora de'..."
-        @focus="open"
-        @keydown="handleInputKeyDown"
-      >
-        <template #prefix><SfIconSearch /></template>
-        <template #suffix>
-          <button
-            v-if="inputModel"
-            type="button"
-            aria-label="Reset search"
-            class="flex rounded-md focus-visible:outline focus-visible:outline-offset"
-            @click="reset"
-          >
-            <SfIconCancel />
-          </button>
-        </template>
-      </SfInput>
-      <SfButton type="submit" square aria-label="Search for a specific phrase on the page" class="rounded-l-none">
-        <SfIconSearch />
-      </SfButton>
-    </div>
-    <div v-if="isOpen" ref="floatingRef" :style="style" class="left-0 right-0">
-      <div
-        v-if="isLoadingSnippets"
-        class="flex items-center justify-center w-full h-screen sm:h-20 py-2 bg-white sm:border sm:border-solid sm:rounded-md sm:border-neutral-100 sm:drop-shadow-md"
-      >
-        <SfLoaderCircular />
+      <div class="flex">
+        <SfInput ref="inputRef" v-model="inputModel"
+          wrapper-class="w-full !ring-0 active:!ring-0 hover:!ring-0 focus-within:!ring-0 border-y border-l border-neutral-200 rounded-r-none hover:border-primary-800 active:border-primary-700 active:border-y-2 active:border-l-2 focus-within:border-y-2 focus-within:border-l-2 focus-within:border-primary-700"
+          aria-label="Search" placeholder="Buscar 'Maquina de' or 'Cortadora de'..." @focus="open"
+          @keydown="handleInputKeyDown">
+          <template #prefix>
+            <SfIconSearch />
+          </template>
+          <template #suffix>
+            <button v-if="inputModel" type="button" aria-label="Reset search"
+              class="flex rounded-md focus-visible:outline focus-visible:outline-offset" @click="reset">
+              <SfIconCancel />
+            </button>
+          </template>
+        </SfInput>
+        <SfButton type="submit" square aria-label="Search for a specific phrase on the page" class="rounded-l-none">
+          <SfIconSearch />
+        </SfButton>
       </div>
-      <ul
-        v-else-if="snippets.length > 0"
-        ref="dropdownListRef"
-        class="py-2 bg-white h-screen sm:h-auto sm:border sm:border-solid sm:rounded-md sm:border-neutral-100 sm:drop-shadow-md"
-      >
-        <li v-for="{ highlight, rest, product } in snippets" :key="product.id">
-          <SfListItem
-            tag="button"
-            type="button"
-            class="flex justify-start !py-4 sm:!py-2"
-            @click="() => selectValue(product.name)"
-            @keydown.enter.space.prevent="selectValue(product.name)"
-          >
-            <p class="text-left">
-              <span>{{ highlight }}</span>
-              <span class="font-medium">{{ rest }}</span>
-            </p>
-            <p class="text-left typography-text-xs text-neutral-500">{{ product.category }}</p>
-          </SfListItem>
-        </li>
-      </ul>
-    </div>
-  </form>
+      <div v-if="isOpen" ref="floatingRef" :style="style" class="left-0 right-0">
+        <div v-if="isLoadingSnippets"
+          class="flex items-center justify-center w-full h-screen sm:h-20 py-2 bg-white sm:border sm:border-solid sm:rounded-md sm:border-neutral-100 sm:drop-shadow-md">
+          <SfLoaderCircular />
+        </div>
+        <ul v-else-if="snippets.length > 0" ref="dropdownListRef"
+          class="py-2 bg-white h-screen sm:h-auto sm:border sm:border-solid sm:rounded-md sm:border-neutral-100 sm:drop-shadow-md">
+          <li v-for="{ highlight, rest, product } in snippets" :key="product.id">
+            <SfListItem tag="button" type="button" class="flex justify-start !py-4 sm:!py-2"
+              @click="() => selectValue(product.name)" @keydown.enter.space.prevent="selectValue(product.name)">
+              <p class="text-left">
+                <span>{{ highlight }}</span>
+                <span class="font-medium">{{ rest }}</span>
+              </p>
+              <p class="text-left typography-text-xs text-neutral-500">{{ product.category }}</p>
+            </SfListItem>
+          </li>
+        </ul>
+      </div>
+    </form>
 
   </div>
   <div class="flex flex-wrap gap-4 lg:gap-6 justify-center">
-    <div
-      v-for="({ image, name, description, button }, index) in itemsDisplay"
-      :key="`${name}-${index}`"
+    <div v-for="({ image, name, description, button, id }, index) in itemsDisplay" :key="`${name}-${index}`"
       v-show="showCard[index]"
       class="flex flex-col items-center border border-neutral-200 rounded-md hover:shadow-xl transition-all duration-500 ease-in-out mb-4 lg:w-1/4 lg:mx-0"
-      :style="{ 'animation-delay': `${index * 100}ms` }"
-    >
-      <a
-        class="absolute inset-0 z-1 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-md"
-        href="#"
-        style="position: relative;"
-      />
+      :style="{ 'animation-delay': `${index * 100}ms` }">
+      <a class="absolute inset-0 z-1 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-md" href="#"
+        style="position: relative;" />
       <img :src="image" :alt="name" class="object-cover h-auto rounded-t-md aspect-video" />
       <div class="flex flex-col items-start p-4 grow">
         <p class="font-medium typography-text-base">{{ name }}</p>
         <p class="mt-1 mb-4 font-normal typography-text-sm text-neutral-700">{{ description }}</p>
-        <SfButton size="sm" variant="tertiary" class="relative mt-auto" >
-          <router-link :to="{ name: 'producto', params: { id: name }}">{{ button || 'Saber más' }}</router-link>
-        
+        <SfButton size="sm" variant="tertiary" class="relative mt-auto">
+          <router-link :to="{ name: 'producto', params: { id: id } }">{{ button || 'Saber más' }}</router-link>
+
         </SfButton>
       </div>
     </div>
@@ -237,7 +213,7 @@ watch(inputModel, () => {
   if (inputModel.value === '') {
     reset();
   }
-filterProducts(inputModel.value);
+  filterProducts(inputModel.value);
 });
 
 watchDebounced(
@@ -296,11 +272,11 @@ const mockAutocompleteRequest = async (phrase: string) => {
         const rest = product.name.substring(index + phrase.length);
         return { highlight, rest, product };
       });
-   // console.log(results); 
+    // console.log(results); 
     return results;
   } catch (error) {
     console.error("Error al obtener sugerencias de autocompletado", error);
     return [];
   }
-  };
+};
 </script>
