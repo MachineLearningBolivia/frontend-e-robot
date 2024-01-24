@@ -78,13 +78,13 @@ export default {
     },
     redirectToPage(cardId){
       if (cardId == 1){
-        window.location.href = "https://www.facebook.com/profile.php?id=100083152845774&sk=about"
+        window.open("https://www.facebook.com/profile.php?id=100083152845774&sk=about", '_blank')
       }
       if (cardId == 2){
-        window.location.href = "https://www.facebook.com/EROBOTBOLIVIA/"
+        window.open("https://www.facebook.com/EROBOTBOLIVIA/", '_blank')
       }
       if (cardId == 3){
-        window.location.href = "https://www.facebook.com/MACHINELEARNINGBOLIVIA"
+        window.open("https://www.facebook.com/MACHINELEARNINGBOLIVIA", '_blank')
       }
     }
   },
