@@ -3,6 +3,7 @@
     <CoverImage />
     <PageDescription />
     <MockupsPage />
+    <VideoPromo />
     <TolSection />
   </body>
   <Footer></Footer>
@@ -14,9 +15,11 @@ import Footer from '../components/Footer.vue'
 import CoverImage from '../components/CoverImage.vue'
 import MockupsPage from '../components/MockupsPage.vue'
 import TolSection from '../components/TolSection.vue'
+import VideoPromo from "../components/VideoPromo.vue";
 export default {
   name: "Inicioo",
   components: {
+    VideoPromo,
     PageDescription,
     Footer,
     CoverImage,
