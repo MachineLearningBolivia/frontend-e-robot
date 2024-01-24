@@ -20,9 +20,14 @@
           </div>
           <!-- Nuevo texto con hipervínculo debajo de cada tarjeta -->
           <div class="text-center mt-2">
-            <a v-if="card.id === 1" href="https://www.facebook.com/profile.php?id=100083152845774&sk=about" class="docs-link" target="_blank">Nuestro Facebook</a>
+            <button @click="redirectToPage(card.id)"
+                    class="transition duration-500 ease-in-out bg-gray-800 hover:bg-[#061249] transform hover:-translate-y-1 hover:scale-110
+                    text-white shadow w-32 h-16 rounded-lg text-center font-bold">
+              Nuestro Facebook
+            </button>
+            <!--<a v-if="card.id === 1" href="https://www.facebook.com/profile.php?id=100083152845774&sk=about" class="docs-link" target="_blank">Nuestro Facebook</a>
             <a v-if="card.id === 2" href="https://www.facebook.com/EROBOTBOLIVIA/" class="docs-link" target="_blank">Nuestro Facebook</a>
-            <a v-if="card.id === 3" href="https://www.facebook.com/MACHINELEARNINGBOLIVIA" class="docs-link" target="_blank">Nuestro Facebook</a>
+            <a v-if="card.id === 3" href="https://www.facebook.com/MACHINELEARNINGBOLIVIA" class="docs-link" target="_blank">Nuestro Facebook</a>-->
           </div>
         </div>
       </div>
@@ -71,6 +76,17 @@ export default {
         card.hovered = card.id === cardId;
       });
     },
+    redirectToPage(cardId){
+      if (cardId == 1){
+        window.location.href = "https://www.facebook.com/profile.php?id=100083152845774&sk=about"
+      }
+      if (cardId == 2){
+        window.location.href = "https://www.facebook.com/EROBOTBOLIVIA/"
+      }
+      if (cardId == 3){
+        window.location.href = "https://www.facebook.com/MACHINELEARNINGBOLIVIA"
+      }
+    }
   },
 };
 </script>

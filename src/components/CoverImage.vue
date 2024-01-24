@@ -1,8 +1,8 @@
 <template>
   <section id="inicio">
-    <div class="position-relative mb-5">
+    <div class="position-relative mb-5 object-cover bg-[#061249]">
       <img
-        class="img-fluid"
+        class="img-fluid object-contain"
         src="../assets/robotica.jpg"
         alt="Image Cover"
       />
@@ -31,5 +31,7 @@ export default {
   width: 100%;
   height: 300px;
 }
+
+
 
 </style>
