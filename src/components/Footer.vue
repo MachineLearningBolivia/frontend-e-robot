@@ -10,9 +10,20 @@
           <div class="text-center">
             <!-- Texto genérico -->
             <p class="mb-2">&copy; 2023 E-ROBOT. Todos los derechos reservados.</p>
-            <p class="mb-2">Términos de Servicio | Política de Privacidad</p>
+            <!-- <p class="mb-2">Términos de Servicio | Política de Privacidad</p> -->
           </div>
         </div>
+        <div class="flex space-x-4">
+  <a href="https://www.tiktok.com/@e_robot001?_t=8jHKW3KaJOf&_r=1" class="hover:text-blue-500">
+    <v-icon name="io-logo-tiktok"/>
+  </a>
+  <a href="https://www.facebook.com/EROBOTBOLIVIA/" class="hover:text-blue-500">
+    <v-icon name="io-logo-facebook"/>
+  </a>
+  <a href="https://maps.app.goo.gl/AkSvv3hPzySWQ2879" class="hover:text-red-600">
+    <v-icon name="io-location-sharp"/>
+  </a>
+</div>
       </div>
     </footer>
   </section>

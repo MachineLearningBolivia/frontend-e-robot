@@ -7,9 +7,9 @@
         class="h-16 mr-4"
       />
     </div>
-    <router-link to="/" class="text-white"><v-icon name="io-storefront" scale="1.7"/></router-link>
+    <router-link to="/" class="text-white hover:text-blue-900"><v-icon name="io-storefront" scale="1.7"/></router-link>
     <router-link to="/inicioo" class="text-white">
-      <span  ><v-icon name="io-home" scale="1.7"/></span></router-link>
+      <span  class="hover:text-blue-900"><v-icon name="io-home" scale="1.7"/></span></router-link>
     <a
         href="https://wa.me/59162426763"
         target="_blank"
