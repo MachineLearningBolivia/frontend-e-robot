@@ -7,17 +7,19 @@
         class="h-16 mr-4"
       />
     </div>
-    <router-link to="/" class="text-white">Catalogo</router-link>
-    <router-link to="/inicioo" class="text-white">Inicio</router-link>
+    <router-link to="/" class="text-white"><v-icon name="io-storefront" scale="1.7"/></router-link>
+    <router-link to="/inicioo" class="text-white">
+      <span  ><v-icon name="io-home" scale="1.7"/></span></router-link>
     <a
         href="https://wa.me/59162426763"
         target="_blank"
         class="navbar-text m-3 d-flex justify-content-end text-white"
       >
-        <img
-          src="../src/assets/wasa-removed.png"
+        <v-icon
+          name="io-logo-whatsapp"
           alt="WhatsApp"
-          class="h-16 mr-4 justify-end"
+          class="h-full mr-4 w-full justify-end text-green-700 rounded-lg"
+          scale="1.7"
         />
       </a>
   </nav>
@@ -49,9 +51,11 @@ onUnmounted(() => {
 
 <style scoped>
 /* Asegúrate de que estas clases estén disponibles en tu configuración de Tailwind */
-.bg-transparent { background-color: transparent; }
+.bg-transparent { background-color: rgba(0, 0, 0, 0.5); }
 .bg-black { background-color: #000; }
 
+.color { color: #fff; }
+.color2 { color: blue; }
 nav {
   transition: background-color 0.3s ease-in-out;
 }
