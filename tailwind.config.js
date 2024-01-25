@@ -4,6 +4,7 @@ export default {
   presets: [tailwindConfig],
   content: ['./index.html', './**/*.vue', './node_modules/@storefront-ui/vue/**/*.{js,mjs}'],
   theme: {
+
     extend: {},
   },
   plugins: [],

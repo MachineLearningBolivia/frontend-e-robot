@@ -2,7 +2,7 @@
   <section id="division" class="pt-10 pb-10 bg-gray-100">
     <div class="container mx-auto">
       <h2 class="text-center mb-8 text-3xl font-bold text-orange-500">Tambien te puede interesar</h2>
-      <div class="flex flex-wrap justify-center mt-5">
+      <div class="flex flex-wrap justify-center mt-5 space-x-44">
         <div v-for="card in cards" :key="card.id" class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 mb-8">
           <div class="card-wrapper" @mouseover="toggleOverlay(card.id)" @mouseleave="toggleOverlay(card.id)">
             <div class="card mb-4">
@@ -20,9 +20,14 @@
           </div>
           <!-- Nuevo texto con hipervínculo debajo de cada tarjeta -->
           <div class="text-center mt-2">
-            <a v-if="card.id === 1" href="https://www.facebook.com/profile.php?id=100083152845774&sk=about" class="docs-link" target="_blank">Nuestro Facebook</a>
+            <button @click="redirectToPage(card.id)"
+                    class="transition duration-500 ease-in-out bg-gray-800 hover:bg-[#061249] transform hover:-translate-y-1 hover:scale-110
+                    text-white shadow w-32 h-16 rounded-lg text-center font-bold">
+              Nuestro Facebook
+            </button>
+            <!--<a v-if="card.id === 1" href="https://www.facebook.com/profile.php?id=100083152845774&sk=about" class="docs-link" target="_blank">Nuestro Facebook</a>
             <a v-if="card.id === 2" href="https://www.facebook.com/EROBOTBOLIVIA/" class="docs-link" target="_blank">Nuestro Facebook</a>
-            <a v-if="card.id === 3" href="https://www.facebook.com/MACHINELEARNINGBOLIVIA" class="docs-link" target="_blank">Nuestro Facebook</a>
+            <a v-if="card.id === 3" href="https://www.facebook.com/MACHINELEARNINGBOLIVIA" class="docs-link" target="_blank">Nuestro Facebook</a>-->
           </div>
         </div>
       </div>
@@ -48,14 +53,6 @@ export default {
         },
         {
           id: 2,
-          imageSrc: eRobotImage,
-          imageAlt: "Image 2",
-          description: "E-ROBOT",
-          hoverText: "Cursos y materiales relacionados a la robótica y electrónica, Placas arduino, mini computadoras, raspberry pi, microcontroladores y software libre.",
-          hovered: false,
-        },
-        {
-          id: 3,
           imageSrc: machineImage,
           imageAlt: "Image 3",
           description: "Machine Learning",
@@ -71,6 +68,14 @@ export default {
         card.hovered = card.id === cardId;
       });
     },
+    redirectToPage(cardId){
+      if (cardId == 1){
+        window.open("https://www.facebook.com/profile.php?id=100083152845774&sk=about", '_blank')
+      }
+      if (cardId == 2){
+        window.open("https://www.facebook.com/MACHINELEARNINGBOLIVIA", '_blank')
+      }
+    }
   },
 };
 </script>
