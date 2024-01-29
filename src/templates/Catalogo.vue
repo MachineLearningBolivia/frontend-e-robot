@@ -20,13 +20,13 @@
           <SfListItem size="sm" tag="a" :href="category.link" :class="[
             'first-of-type:mt-2 rounded-md active:bg-primary-100',
             { 'bg-primary-100 hover:bg-primary-100 active:bg-primary-100 font-medium': index === 0 },
-          ]">
+          ]" @click="categoryFilter(category.id)">
             <template #suffix>
               <SfIconCheck v-if="index === 0" size="sm" class="text-primary-700" />
             </template>
             <span class="flex items-center">
-              {{ category.label }}
-              <SfCounter class="ml-2 typography-text-sm font-normal">{{ category.counter }}</SfCounter>
+              {{ category.name }}
+              <SfCounter class="ml-2 typography-text-sm font-normal">{{ category.name }}</SfCounter>
             </span>
           </SfListItem>
         </li>
@@ -123,13 +123,17 @@ import {
 //catalogo
 import { type Ref, ref, onMounted, watch, nextTick } from "vue";
 import { getProduct } from "../../api/product.js"
-
+//category
+import { getCategoriesRequest } from "../../api/category.js"
+//catalogo var
 const items = ref([]);
 const load = ref(true);
 const itemsDisplay = ref([]);
 const showCard = ref([]);
 const displayedItems = ref([]);
 const allItemsLoaded = ref(false);
+//categories var
+const categoriesItems = ref([]);
 
 async function loadData() {
   try {
@@ -144,6 +148,17 @@ async function loadData() {
   } catch (error) {
     console.error("Error al cargar datos", error);
   }
+  try {
+    const resCat = await getCategoriesRequest();
+    categoriesItems.value = resCat.data;
+    categories.value = categoriesItems.value.data;
+    console.log(categories.value);
+    console.log(categories);
+
+  } catch (error) {
+    console.error("Error al cargar datos", error);
+  }
+
 }
 //filtrar itemsDisplay
 async function filterProducts(phrase: string) {
@@ -351,4 +366,20 @@ const categories = ref([
 ]);
 
 const open2 = ref(true);
+const categoryFilter = async (phrase: string) => {
+  const itemsDisplayLocal = ref([]);
+  itemsDisplayLocal.value = items.value.data;
+  console.log(itemsDisplayLocal);
+  // Convertir la cadena a un número
+  const categoryId = parseInt(phrase, 10);
+  console.log(categoryId);
+
+  const productosFiltrados = itemsDisplayLocal.value;
+  // Filtrar productos de la categoría 
+
+  const productoFiltrado = productosFiltrados.filter(producto => producto.category_id === categoryId);
+  console.log(productoFiltrado);
+  itemsDisplay.value = productoFiltrado;
+};
+
 </script>
