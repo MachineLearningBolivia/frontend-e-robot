@@ -1,4 +1,5 @@
 <template>
+  <br><br><br><br>
   <div>
     <SfAccordionItem v-model="open2" class="w-full md:max-w-[376px] float-left">
       <template #summary>
@@ -37,7 +38,7 @@
         <div class="flex">
           <SfInput ref="inputRef" v-model="inputModel"
             wrapper-class="w-full !ring-0 active:!ring-0 hover:!ring-0 focus-within:!ring-0 border-y border-l border-neutral-200 rounded-r-none hover:border-primary-800 active:border-primary-700 active:border-y-2 active:border-l-2 focus-within:border-y-2 focus-within:border-l-2 focus-within:border-primary-700"
-            aria-label="Search" placeholder="Buscar 'Maquina de' or 'Cortadora de'..." @focus="open"
+            aria-label="Search" placeholder="Buscar..." @focus="open"
             @keydown="handleInputKeyDown">
             <template #prefix>
               <SfIconSearch />
@@ -92,7 +93,7 @@
           </SfButton>
         </div>
       </div>
-      <SfButton v-if="!allItemsLoaded" class="w-full mt-4" @click="loadMore"> Mostrar Más </SfButton>
+      <SfButton v-if="!allItemsLoaded" class="w-80 mt-4" @click="loadMore"> Mostrar Más </SfButton>
     </div>
   </div>
 </template>

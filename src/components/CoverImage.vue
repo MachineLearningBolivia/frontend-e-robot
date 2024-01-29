@@ -3,7 +3,7 @@
     <div class="position-relative mb-5 object-cover bg-[#061249]">
       <img
         class="img-fluid object-contain"
-        src="../assets/robotica.jpg"
+        src="../assets/PORTADA-PÁGINA.jpg"
         alt="Image Cover"
       />
       <div
