@@ -1,5 +1,8 @@
 <template>
   <br><br><br><br>
+  <div v-if="isPageLoaded" class="flex items-center justify-center h-screen">
+    <SfLoaderCircular size="4xl"/>
+  </div>
   <div class="relative min-h-[600px] mb-6">
     <picture>
       <source srcset="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/hero-bg.png"
@@ -213,6 +216,7 @@ async function loadMore() {
 }
 
 onMounted(() => {
+  isPageLoaded.value = false;
   loadData();
 });
 
@@ -233,7 +237,8 @@ function handleScroll() {
 const inputModel = ref('');
 const inputRef = ref();
 const dropdownListRef = ref();
-const isLoadingSnippets = ref(false);
+const isLoadingSnippets = ref(true);
+const isPageLoaded = ref(true);
 const snippets = ref<{ highlight: string; rest: string; product: Product }[]>([]);
 const { isOpen, close, open } = useDisclosure();
 const { referenceRef, floatingRef, style } = useDropdown({

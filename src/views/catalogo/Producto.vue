@@ -1,9 +1,10 @@
 <template>
+  <div class="mt-5 mb-5"></div>
   <div class="flex">
     <div class="hidden md:block w-full md:w-[calc(100% - 640px)] mr-4">
       <img :src="item.image" alt="de la imagen" class="w-full h-auto">
     </div>
-    <section class="w-full md:w-[640px] float-right ">
+    <section class="w-full md:w-[640px] float-right mr-4">
       <div
         class="inline-flex items-center justify-center text-sm font-medium text-white bg-secondary-600 py-1.5 px-3 mb-4">
         <SfIconSell size="sm" class="mr-1.5" />
@@ -14,17 +15,12 @@
       <div class="inline-flex items-center mt-4 mb-2">
         <SfRating size="xs" :value="3" :max="5" />
         <SfCounter class="ml-1" size="xs">123</SfCounter>
-        <SfLink href="#" variant="secondary" class="ml-2 text-xs text-neutral-500"> 123 reviews </SfLink>
+        <SfLink href="#" variant="secondary" class="ml-2 text-xs text-neutral-500"> 123 pedidos realizados </SfLink>
       </div>
       <ul class="mb-4 font-normal typography-text-sm">
         <li>{{ item.description }} </li>
       </ul>
       <div class="py-4 mb-4 border-gray-200 border-y">
-        <div
-          class="bg-primary-100 text-primary-700 flex justify-center gap-1.5 py-1.5 typography-text-sm items-center mb-4 rounded-md">
-          <SfIconShoppingCartCheckout />
-          1 in cart
-        </div>
         <div class="items-start xs:flex">
           <div class="flex flex-col items-stretch xs:items-center xs:inline-flex">
             <div class="flex border border-neutral-300 rounded-md">
@@ -41,49 +37,38 @@
               </SfButton>
             </div>
             <p class="self-center mt-1 mb-4 text-xs text-neutral-500 xs:mb-0">
-              <strong class="text-neutral-900">{{ max }}</strong> in stock
+              <strong class="text-neutral-900">{{ item.stock }}</strong> en stock
             </p>
           </div>
+
           <SfButton size="lg" class="w-full xs:ml-4">
             <template #prefix>
               <SfIconShoppingCart size="sm" />
             </template>
-            Add to cart
-          </SfButton>
-        </div>
-        <div class="flex justify-center mt-4 gap-x-4">
-          <SfButton size="sm" variant="tertiary">
-            <template #prefix>
-              <SfIconCompareArrows size="sm" />
-            </template>
-            Compare
-          </SfButton>
-          <SfButton size="sm" variant="tertiary">
-            <SfIconFavorite size="sm" />
-            Add to list
+            Pedir producto
           </SfButton>
         </div>
       </div>
       <div class="flex first:mt-4">
         <SfIconPackage size="sm" class="flex-shrink-0 mr-1 text-neutral-500" />
         <p class="text-sm">
-          Free shipping, arrives by Thu, Apr 7. Want it faster?
-          <SfLink href="#" variant="secondary" class="mx-1"> Add an address </SfLink>
-          to see options
+          No encuentras el producto que quieres?
+          <SfLink href="#" variant="secondary" class="mx-1"> Envianos tu correo</SfLink>
+          para ayudar a econtrarlo
         </p>
       </div>
       <div class="flex mt-4">
         <SfIconWarehouse size="sm" class="flex-shrink-0 mr-1 text-neutral-500" />
         <p class="text-sm">
-          Pickup not available at your shop.
-          <SfLink href="#" variant="secondary" class="ml-1"> Check availability nearby </SfLink>
+          No sabes donde recoger tus productos
+          <SfLink href="#" variant="secondary" class="ml-1"> Te mostramos nuestras sucursales</SfLink>
         </p>
       </div>
       <div class="flex mt-4">
         <SfIconSafetyCheck size="sm" class="flex-shrink-0 mr-1 text-neutral-500" />
         <p class="text-sm">
-          Free 30-days returns.
-          <SfLink href="#" variant="secondary" class="ml-1"> Details </SfLink>
+          ¿No estas satisfecho con nuestro servicio?
+          <SfLink href="#" variant="secondary" class="ml-1"> Contactanos </SfLink>
         </p>
       </div>
     </section>
