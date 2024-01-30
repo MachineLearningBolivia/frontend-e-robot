@@ -1,7 +1,7 @@
 <template>
   <section id="division" class="pt-10 pb-10 bg-gray-100">
     <div class="container mx-auto">
-      <h2 class="text-center mb-8 text-3xl font-bold text-orange-500">Tambien te puede interesar</h2>
+      <h2 class="text-center mb-8 text-3xl font-bold text-orange-500">También te puede interesar</h2>
       <div class="flex flex-wrap justify-center mt-5 space-x-44">
         <div v-for="card in cards" :key="card.id" class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 mb-8">
           <div class="card-wrapper" @mouseover="toggleOverlay(card.id)" @mouseleave="toggleOverlay(card.id)">
