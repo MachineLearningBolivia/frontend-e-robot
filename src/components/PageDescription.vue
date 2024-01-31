@@ -20,7 +20,7 @@ export default {
     return {
       title: "E-ROBOT",
       description:
-        "Cursos y materiales relacionados a la robótica y electrónica, Placas arduino, mini computadoras, raspberry pi, microcontroladores y software libre.",
+        "Cursos y materiales relacionados a la robótica y electrónica. Placas arduino, mini computadoras, raspberry pi, microcontroladores y software libre.",
     };
   },
 };
