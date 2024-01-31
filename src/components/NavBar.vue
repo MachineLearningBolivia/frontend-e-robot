@@ -1,20 +1,29 @@
 <template>
   <nav :class="{ 'bg-transparent': isTransparent, 'bg-black': !isTransparent }" class="sticky top-0 z-50 h-20 flex items-center justify-between">
     <div class="flex items-center">
-      <img src="../assets/E-ROBOT-removebg.png" alt="Logo" class="h-16 mr-4" />
+      <img src="../assets/E-ROBOT-removebg.png" alt="Logo" class="h-16 mr-60" />
     </div>
     <router-link to="/" @click="toggleWordsnt" class="text-white hover:text-blue-500">
       <v-icon name="io-storefront" scale="1.7"/>
     </router-link>
-    <div class="flex items-center">
+    <div class="flex items-center justify-between w-60">
       <span @click="toggleWords" class="text-white cursor-pointer">
         <router-link to="/inicioo" class="text-white hover:text-blue-500"><v-icon name="io-home" scale="1.7"/> </router-link>
       </span>
-      <div v-show="showWords" class="right-30 text-center">
-        <a class="ml-1 hover:text-blue-500" href="#cursos">Cursos</a>
-        <a class="ml-1 hover:text-blue-500" href="#servicios">Servicios</a>
-        <a class="ml-1 hover:text-blue-500" href="#otros">Otros</a>
-      </div>
+      <transition name="fade">
+        <div v-show="showWords" class="right-30 text-center justify-between">
+          <a class="ml-1 text-white hover:text-blue-500" href="#cursos">Cursos</a>
+          <a class="ml-1 text-white hover:text-blue-500" href="#servicios">Servicios</a>
+          <a class="ml-1 text-white hover:text-blue-500" href="#otros">Otros</a>
+        </div>
+      </transition>
+      <transition name="fade">
+        <div v-show="!showWords" class="right-30 text-center justify-between">
+          <span class="ml-1 invisible">Cursos</span>
+          <span class="ml-1 invisible">Servicios</span>
+          <span class="ml-1 invisible">Otros</span>
+        </div>
+      </transition>
     </div>
     <a href="https://wa.me/59162426763" target="_blank" class="navbar-text m-3 d-flex justify-content-end text-white">
       <v-icon name="io-logo-whatsapp" alt="WhatsApp" class="h-full mr-4 w-full justify-end text-green-700 rounded-lg" scale="1.7"/>
@@ -96,5 +105,13 @@ body::-webkit-scrollbar-thumb:hover {
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>
