@@ -1,7 +1,7 @@
 <template>
-  <section id="mockups" class="pt-5 pb-5 bg-gray-100">
-    <div class="container mx-auto">
-      <h2 class="text-center mb-4 text-3xl font-bold text-orange-500">Algunos de nuestros cursos</h2>
+  <section id="mockups" class="bg-gray-150 flex justify-center ">
+    <div class="container w-full ">
+      <h2 class="text-center mb-4 text-4xl font-extrabold text-orange-500">ALGUNOS DE NUESTROS CURSOS</h2>
       <swiper
           :effect="'coverflow'"
           :grabCursor="true"
@@ -19,53 +19,35 @@
       disableOnInteraction: false,
     }"
           :pagination="true"
+          :navigation="true"
           :modules="modules"
           class="mySwiper"
+          id="mySlider"
       >
         <swiper-slide
             v-for="slide in mockups"
-            :key="slide.id">
-          <img :src="slide.imageSrc" alt=""/>
+            :key="slide.id"
+        class="border-2 border-black rounded-xl">
+          <img class="rounded-xl" :src="slide.imageSrc" alt=""/>
         </swiper-slide>
       </swiper>
-      <!--<vueper-slides
-          ref="myVueperSlides"
-          autoplay
-          :pause-on-hover="pauseOnHover"
-          @autoplay-pause="internalAutoPlaying = false"
-          @autoplay-resume="internalAutoPlaying = true">
-        <vueper-slide v-for="slide in mockups"
-                      :key="slide.id"
-                      :image="slide.imageSrc"
-        >
-        </vueper-slide>
-      </vueper-slides>-->
-      <!--
-      <div class="flex justify-center mt-3">
-        <a href="https://www.figma.com/file/vKPXFYGaHc3PaVPHvje35N/MockupsRommos?type=design&node-id=0-1&mode=design&t=WnoEYYuApfYvs3Zk-0" class="docs-link" target="_blank">Explora nuestros Mockups</a>
-      </div>
-      -->
     </div>
   </section>
 </template>
 
 <script>
-
 import envolvedoraImage from "../assets/curso1.jpg";
 import tripodeImage from "../assets/curso2.jpg";
 import termoformadoraImage from "../assets/curso3.jpg";
 import cncImage from "../assets/curso4.jpg";
 import { Swiper, SwiperSlide } from 'swiper/vue';
-
 // Import Swiper styles
 import 'swiper/css';
-
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { Autoplay, EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 
-
-// import required modules
-import { Autoplay, EffectCoverflow, Pagination } from 'swiper/modules';
 export default {
   name: 'MockupsPage',
   components:{
@@ -74,7 +56,7 @@ export default {
   },
   data() {
     return {
-      modules: [Autoplay,EffectCoverflow,Pagination],
+      modules: [Autoplay,EffectCoverflow,Pagination, Navigation],
       mockups: [
         {
           imageSrc: envolvedoraImage,
@@ -99,12 +81,11 @@ export default {
 </script>
 
 <style>
-body {
-  position: relative;
-  height: 100%;
-}
 
 body {
+
+  width: 100%;
+  height: 100%;
   background: #eee;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -130,6 +111,16 @@ body {
   display: block;
   width: 100%;
 }
+
+#mySlider .swiper-button-prev,
+#mySlider .swiper-button-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  --swiper-navigation-size: 60px;
+}
+
 
 </style>
 
