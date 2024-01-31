@@ -6,7 +6,7 @@
 </script>
 
 <template>
-  <section id="division" class="pt-10 pb-10 bg-orange-500">
+  <section id="servicios" class="pt-10 pb-10 bg-orange-500">
     <div class="container mx-auto">
       <h2 class="text-center mb-8 text-4xl font-extrabold text-black">EXPLORA NUESTROS SERVICIOS</h2>
       <div class="flex flex-wrap justify-center mt-5">
