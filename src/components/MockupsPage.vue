@@ -14,6 +14,10 @@
       modifier: 1,
       slideShadows: true,
     }"
+          :autoplay="{
+      delay: 2500,
+      disableOnInteraction: false,
+    }"
           :pagination="true"
           :modules="modules"
           class="mySwiper"
@@ -61,7 +65,7 @@ import 'swiper/css/pagination';
 
 
 // import required modules
-import { EffectCoverflow, Pagination } from 'swiper/modules';
+import { Autoplay, EffectCoverflow, Pagination } from 'swiper/modules';
 export default {
   name: 'MockupsPage',
   components:{
@@ -70,7 +74,7 @@ export default {
   },
   data() {
     return {
-      modules: [EffectCoverflow,Pagination],
+      modules: [Autoplay,EffectCoverflow,Pagination],
       mockups: [
         {
           imageSrc: envolvedoraImage,
