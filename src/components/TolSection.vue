@@ -1,5 +1,5 @@
 <template>
-  <section id="division" class="pt-10 pb-10 bg-gray-100 justify-center">
+  <section id="otros" class="pt-10 pb-10 bg-gray-100 justify-center">
     <div class="container mx-auto">
       <h2 class="text-center mb-8 text-4xl font-extrabold text-orange-500">TAMBIÉN TE PUEDE INTERESAR</h2>
       <div class="flex flex-wrap justify-around mt-5">
