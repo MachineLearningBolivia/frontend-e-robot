@@ -1,16 +1,17 @@
 <template>
   <br><br><br><br>
-  <div v-if="isPageLoaded" class="flex items-center justify-center h-screen">
-    <SfLoaderCircular size="4xl"/>
+  <div v-if="isPageLoaded"
+    class="fixed top-0 right-0 bottom-0 left-0 flex items-center justify-center z-50 h-screen bg-white">
+    <SfLoaderCircular size="4xl" />
   </div>
-  <div class="relative min-h-[600px] mb-6">
+  <div class="relative min-h-[600px] mb-6 mx-auto">
     <picture>
       <source srcset="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/hero-bg.png"
         media="(min-width: 768px)" />
       <img src="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/hero-bg-mobile.png"
         class="absolute w-full h-full z-[-1] md:object-cover" alt="hero" />
     </picture>
-    <div class="md:flex md:flex-row-reverse md:justify-center max-w[1536px] mx-auto md:min-h-[600px]">
+    <div class="md:flex md:flex-row md:justify-center max-w[1536px] mx-auto md:min-h-[600px]">
       <div class="flex flex-col md:basis-2/4 md:items-stretch md:overflow-hidden">
         <img :src="imgInicial" alt="Headphones" class="h-full object-cover object-left" />
       </div>
@@ -31,32 +32,82 @@
       </div>
     </div>
   </div>
+  <div>
+    <SfScrollable
+      class="m-auto py-4 items-center w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+      buttons-placement="floating" drag>
+      <template #previousButton="defaultProps">
+        <SfButton v-bind="defaultProps" class="absolute !rounded-full z-10 left-4 bg-white hidden md:block"
+          :class="{ '!hidden': defaultProps.disabled }" variant="secondary" size="lg" square>
+          <SfIconChevronLeft />
+        </SfButton>
+      </template>
+      <div v-for="{ id, name, price, image } in itemsDisplay" :key="id"
+        class="first:ms-auto last:me-auto border border-neutral-200 shrink-0 rounded-md hover:shadow-lg w-[148px] lg:w-[192px]">
+        <div class="relative">
+          <SfLink href="#" class="block">
+            <img :src="image" :alt="name"
+              class="block object-cover h-auto rounded-md aspect-square lg:w-[190px] lg:h-[190px]" width="146"
+              height="146" />
+          </SfLink>
+          <SfButton variant="tertiary" size="sm" square
+            class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full"
+            aria-label="Add to wishlist">
+            <SfIconFavorite size="sm" />
+          </SfButton>
+        </div>
+        <div class="p-2 border-t border-neutral-200 typography-text-sm">
+          <SfLink href="#" variant="secondary" class="no-underline">{{ name }}</SfLink>
+          <span class="block mt-2 font-bold">{{ price }}</span>
+        </div>
+      </div>
+      <template #nextButton="defaultProps">
+        <SfButton v-bind="defaultProps" class="absolute !rounded-full z-10 right-4 bg-white hidden md:block"
+          :class="{ '!hidden': defaultProps.disabled }" variant="secondary" size="lg" square>
+          <SfIconChevronRight />
+        </SfButton>
+      </template>
+    </SfScrollable>
+  </div>
   <div class="flex mt-4">
-    <div class="float-left">
-      <SfAccordionItem v-model="open2" class="w-full md:max-w-[376px]">
+    <div class="float-left ml-3 mr-3 hidden sm:block">
+      <SfAccordionItem v-model="open2" class="w-full md:max-w-[476px] ">
         <template #summary>
-          <div class="flex justify-between p-2 mb-2">
+          <div class="flex justify-between p-2 mb-2 bg-primary-600 rounded-t-lg ">
             <p class="font-medium">Categorias</p>
             <SfIconChevronLeft :class="open2 ? 'rotate-90' : '-rotate-90'" />
           </div>
         </template>
-        <ul class="mt-2 mb-6">
+        <ul class="mt-2 mb-6 border border-neutral-200 border-primary-600 rounded-lg">
+          <div v-if="isPageLoaded" class="flex items-center justify-center h-screen">
+            <SfLoaderCircular size="4xl" />
+          </div>
           <li v-for="(category, index) in categories" :key="category.key">
-            <SfListItem size="sm" tag="a" :href="category.link" :class="[
-              'first-of-type:mt-2 rounded-md active:bg-primary-100',
-              { 'bg-primary-100 hover:bg-primary-100 active:bg-primary-100 font-medium': index === selectedCategory },
-            ]" @click="categoryFilter(category.id)">
+            <SfListItem @mouseover="showProducts(category.id)" @mouseout="hideProducts" size="sm" tag="a"
+              :href="category.link" :class="[
+                'first-of-type:mt-2 rounded-md active:bg-primary-100',
+                { 'bg-primary-100 hover:bg-primary-100 active:bg-primary-100 font-medium': index === selectedCategory },
+              ]" @click="categoryFilter(category.id)">
               <template #suffix>
                 <SfIconCheck v-if="index === selectedCategory" size="sm" class="text-primary-700" />
               </template>
-              <span class="flex items-center">
-                {{ category.name }}
-                <SfCounter class="ml-2 typography-text-sm font-normal">{{ category.name }}</SfCounter>
-              </span>
+              <div>
+                <span class="flex items-center">
+                  {{ category.name }}
+                  <SfCounter class="ml-2 typography-text-sm font-normal">{{ category.name }}</SfCounter>
+                </span>
+              </div>
             </SfListItem>
           </li>
         </ul>
       </SfAccordionItem>
+    </div>
+    <div v-if="!hoveredCategory" role="alert" :style="{ top: `${hoverPositionTop}px`, left: `${hoverPositionLeft}px` }"
+      class=" absolute bg-neutral-100 max-w-[600px] shadow-md pr-2 pl-4 ring-1 ring-neutral-300 typography-text-sm md:typography-text-base py-1 rounded-md ">
+      <p class="py-2">{{ categoryProducts }}</p>
+      <div v-for="({ name, id }, index) in itemsDisplayCategorized" :key="`${name}-${index}`">
+        <p class="font-medium typography-text-base">{{ name }}</p>
+      </div>
     </div>
     <div>
       <div class="mb-4">
@@ -100,24 +151,27 @@
           </div>
         </form>
       </div>
-      <div class="flex flex-wrap gap-4 lg:gap-6 justify-center">
-        <div v-for="({ image, name, description, button, id }, index) in itemsDisplay" :key="`${name}-${index}`"
-          v-show="showCard[index]"
-          class="flex flex-col items-center border border-neutral-200 rounded-md hover:shadow-xl transition-all duration-500 ease-in-out mb-4 lg:w-1/4 lg:mx-0"
-          :style="{ 'animation-delay': `${index * 100}ms` }">
-          <a class="absolute inset-0 z-1 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-md"
-            href="#" style="position: relative;" />
-          <img :src="image" :alt="name" class="object-cover h-auto rounded-t-md aspect-video" />
-          <div class="flex flex-col items-start p-4 grow">
-            <p class="font-medium typography-text-base">{{ name }}</p>
-            <p class="mt-1 mb-4 font-normal typography-text-sm text-neutral-700">{{ description }}</p>
-            <SfButton size="sm" variant="tertiary" class="relative mt-auto">
-              <router-link :to="{ name: 'producto', params: { id: id } }">{{ button || 'Saber más' }}</router-link>
-
-            </SfButton>
+      <div>
+        <div class="flex flex-wrap gap-4 lg:gap-6 justify-center">
+          <div v-for="({ image, name, description, button, id }, index) in itemsDisplay" :key="`${name}-${index}`"
+            v-show="showCard[index]"
+            class="flex flex-col items-center border border-neutral-200 rounded-md hover:shadow-xl transition-all duration-500 ease-in-out mb-4 lg:w-1/4 lg:mx-0"
+            :style="{ 'animation-delay': `${index * 100}ms` }">
+            <a class="absolute inset-0 z-1 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-md"
+              href="#" style="position: relative;" />
+            <img :src="image" :alt="name" class="object-cover h-auto rounded-t-md aspect-video" />
+            <div class="flex flex-col items-start p-4 grow">
+              <p class="font-medium typography-text-base">{{ name }}</p>
+              <p class="mt-1 mb-4 font-normal typography-text-sm text-neutral-700">{{ description }}</p>
+              <SfButton size="sm" variant="tertiary" class="relative mt-auto">
+                <router-link :to="{ name: 'producto', params: { id: id } }">{{ button || 'Saber más' }}</router-link>
+              </SfButton>
+            </div>
           </div>
         </div>
-        <SfButton v-if="!allItemsLoaded" class="w-80 mt-4" @click="loadMore"> Mostrar Más </SfButton>
+        <div class="flex flex-wrap justify-center w-full">
+          <SfButton v-if="!allItemsLoaded" class="w-80 mt-4 " @click="loadMore"> Mostrar Más </SfButton>
+        </div>
       </div>
     </div>
   </div>
@@ -144,6 +198,10 @@ import {
   SfIconArrowBack,
   SfIconCheck,
   SfIconChevronLeft,
+  SfLink,
+  SfIconFavorite,
+  SfIconChevronRight,
+  SfScrollable,
 } from '@storefront-ui/vue';
 //catalogo
 import { type Ref, ref, onMounted, watch, nextTick } from "vue";
@@ -186,7 +244,7 @@ async function loadData() {
   } catch (error) {
     console.error("Error al cargar datos", error);
   }
-
+  isPageLoaded.value = false;
 }
 //filtrar itemsDisplay
 async function filterProducts(phrase: string) {
@@ -216,7 +274,6 @@ async function loadMore() {
 }
 
 onMounted(() => {
-  isPageLoaded.value = false;
   loadData();
 });
 
@@ -394,8 +451,8 @@ const categories = ref([
     link: '#',
   },
 ]);
-
-const open2 = ref(true);
+//filtro de categorias
+const open2 = ref(false);
 const categoryFilter = async (phrase: string) => {
   const itemsDisplayLocal = ref([]);
   itemsDisplayLocal.value = items.value.data;
@@ -412,4 +469,34 @@ const categoryFilter = async (phrase: string) => {
   itemsDisplay.value = productoFiltrado;
   selectedCategory.value = categoryId - 1;
 };
+//minipantalla de categorias
+const categoryProducts = ref([]);
+const hoverPositionTop = ref([]);
+const hoverPositionLeft = ref([]);
+const hoveredCategory = ref([]);
+hoveredCategory.value = true;
+const itemsDisplayCategorized = ref([]);
+
+const showProducts = async (phrase: string) => {
+  hoveredCategory.value = false;
+  categoryProducts.value = "Productos disponibles";
+  hoverPositionTop.value = event.currentTarget.offsetTop;
+  hoverPositionLeft.value = event.currentTarget.offsetLeft + event.currentTarget.offsetHeight + 200;
+  //Ver productosFiltrados
+  const itemsDisplayLocal = ref([]);
+  itemsDisplayLocal.value = items.value.data;
+  // Convertir la cadena a un número
+  const categoryId = parseInt(phrase, 10);
+
+  const productosFiltrados = itemsDisplayLocal.value;
+  // Filtrar productos de la categoría 
+
+  const productoFiltrado = productosFiltrados.filter(producto => producto.category_id === categoryId);
+  itemsDisplayCategorized.value = productoFiltrado;
+  console.log(itemsDisplayCategorized);
+}
+const hideProducts = async () => {
+  categoryProducts.value = "";
+  hoveredCategory.value = true;
+}
 </script>
