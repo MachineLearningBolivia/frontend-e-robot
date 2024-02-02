@@ -12,11 +12,6 @@
       </div>
       <h1 class="mb-1 font-bold typography-headline-4">{{ item.name }}</h1>
       <strong class="block font-bold typography-headline-3">{{ item.price }}</strong>
-      <div class="inline-flex items-center mt-4 mb-2">
-        <SfRating size="xs" :value="3" :max="5" />
-        <SfCounter class="ml-1" size="xs">123</SfCounter>
-        <SfLink href="#" variant="secondary" class="ml-2 text-xs text-neutral-500"> 123 pedidos realizados </SfLink>
-      </div>
       <ul class="mb-4 font-normal typography-text-sm">
         <li>{{ item.description }} </li>
       </ul>
@@ -41,7 +36,7 @@
             </p>
           </div>
 
-          <SfButton size="lg" class="w-full xs:ml-4">
+          <SfButton size="lg" class="w-full xs:ml-4" @click="sendWhatssapMessage()">
             <template #prefix>
               <SfIconShoppingCart size="sm" />
             </template>
@@ -151,5 +146,13 @@ onMounted(() => {
   cargarProducto();
   loadData();
 });
-
+//Mandar mensaje
+const sendWhatssapMessage = () => {
+  const numeroTelefono = '+591 62426763'; // Reemplaza con el número de teléfono de destino (debe estar en formato internacional)
+  const mensaje = '¡Hola, quisiera pedir ' + count.value + ' ' + item.value.name; // Mensaje personalizado
+  // Genera el enlace de WhatsApp
+  const linkWhatsApp = `https://api.whatsapp.com/send?phone=${encodeURIComponent(numeroTelefono)}&text=${encodeURIComponent(mensaje)}`;
+  // Abre el enlace en una nueva ventana o pestaña
+  window.open(linkWhatsApp, '_blank');
+};
 </script>

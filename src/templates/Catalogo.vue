@@ -94,7 +94,6 @@
               <div>
                 <span class="flex items-center">
                   {{ category.name }}
-                  <SfCounter class="ml-2 typography-text-sm font-normal">{{ category.name }}</SfCounter>
                 </span>
               </div>
             </SfListItem>
