@@ -1,5 +1,5 @@
 <template>
-  <br><br><br><br>
+  <nav class="top-0 z-50 h-20 text-transparent"></nav>
   <div v-if="isPageLoaded" class="flex items-center justify-center h-screen">
     <SfLoaderCircular size="4xl"/>
   </div>

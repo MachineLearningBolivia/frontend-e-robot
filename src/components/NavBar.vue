@@ -8,13 +8,13 @@
     </router-link>
     <div class="flex items-center justify-between w-60">
       <span @click="toggleWords" class="text-white cursor-pointer">
-        <router-link to="/inicioo" class="text-white hover:text-blue-500"><v-icon name="io-home" scale="1.7"/> </router-link>
+        <router-link to="/inicioo" class="text-white hover:text-blue-500"><v-icon name="io-home" href="#portada" scale="1.7"/> </router-link>
       </span>
       <transition name="fade">
         <div v-show="showWords" class="right-30 text-center justify-between">
-          <a class="ml-1 text-white hover:text-blue-500" href="#cursos">Cursos</a>
-          <a class="ml-1 text-white hover:text-blue-500" href="#servicios">Servicios</a>
-          <a class="ml-1 text-white hover:text-blue-500" href="#otros">Otros</a>
+          <a class="ml-1 text-white hover:text-blue-500" href="#cursos" @click="scrollTo('#cursos')">Cursos</a>
+          <a class="ml-1 text-white hover:text-blue-500" href="#servicios" @click="scrollTo('#servicios')">Servicios</a>
+          <a class="ml-1 text-white hover:text-blue-500" href="#otros" @click="scrollTo('#otros')">Otros</a>
         </div>
       </transition>
       <transition name="fade">

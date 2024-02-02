@@ -1,5 +1,5 @@
 <template>
-  <section id="inicio">
+  <section id="portada">
     <img
         class="img-fluid object-contain"
         src="../assets/robot.jpg"
