@@ -2,6 +2,7 @@
   <body>
     <CoverImage />
     <PageDescription />
+    <br><br><br><br>
     <MockupsPage />
     <VideoPromo />
     <TolSection />
@@ -31,7 +32,7 @@ export default {
 
 <style>
 body {
-  padding-top: 0rem;
+  padding-top: 0;
 }
 body::-webkit-scrollbar {
   width: 8px; /* Ancho del scroll */
