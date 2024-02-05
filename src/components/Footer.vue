@@ -9,7 +9,7 @@
         <div class="w-4/5">
           <div class="text-center">
             <!-- Texto genérico -->
-            <p class="mb-2">&copy; 2023 E-ROBOT. Todos los derechos reservados.</p>
+            <p class="titu mb-2">&copy; 2023 E-ROBOT. Todos los derechos reservados.</p>
             <!-- <p class="mb-2">Términos de Servicio | Política de Privacidad</p> -->
           </div>
         </div>
@@ -75,4 +75,9 @@ export default {
 .footer-text a:hover {
   color: #bbb;
 }
+
+.titu {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 </style>

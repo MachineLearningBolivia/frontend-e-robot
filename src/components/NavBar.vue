@@ -1,20 +1,20 @@
 <template>
-  <nav :class="{ 'bg-transparent': isTransparent, 'bg-black': !isTransparent }" class="sticky top-0 z-50 h-20 flex items-center justify-between">
+  <nav :class="{ 'bg-transparent': isTransparent, 'bg-white': !isTransparent }" class="sticky top-0 z-50 h-20 flex items-center justify-between">
     <div class="flex items-center">
       <img src="../assets/E-ROBOT-removebg.png" alt="Logo" class="h-16 mr-60" />
     </div>
-    <router-link to="/" @click="toggleWordsnt" class="text-white hover:text-blue-500">
+    <router-link to="/" @click="toggleWordsnt" class="text-[#004f91] hover:text-blue-500">
       <v-icon name="io-storefront" scale="1.7"/>
     </router-link>
     <div class="flex items-center justify-between w-60">
-      <span @click="toggleWords" class="text-white cursor-pointer">
-        <router-link to="/inicioo" class="text-white hover:text-blue-500"><v-icon name="io-home" href="#portada" scale="1.7"/> </router-link>
+      <span @click="toggleWords" class="text-[#004f91] cursor-pointer">
+        <router-link to="/inicioo" class="hover:text-blue-500"><v-icon name="io-home" href="#portada" scale="1.7"/> </router-link>
       </span>
       <transition name="fade">
         <div v-show="showWords" class="right-30 text-center justify-between">
-          <a class="ml-1 text-white hover:text-blue-500" href="#cursos" @click="scrollTo('#cursos')">Cursos</a>
-          <a class="ml-1 text-white hover:text-blue-500" href="#servicios" @click="scrollTo('#servicios')">Servicios</a>
-          <a class="ml-1 text-white hover:text-blue-500" href="#otros" @click="scrollTo('#otros')">Otros</a>
+          <a class="titul ml-1 text-[#001120] hover:text-blue-500" href="#cursos" @click="scrollTo('#cursos')">Cursos</a>
+          <a class="titul ml-1 text-[#001120] hover:text-blue-500" href="#servicios" @click="scrollTo('#servicios')">Servicios</a>
+          <a class="titul ml-1 text-[#001120] hover:text-blue-500" href="#otros" @click="scrollTo('#otros')">Otros</a>
         </div>
       </transition>
       <transition name="fade">
@@ -66,8 +66,8 @@ onUnmounted(() => {
 
 <style scoped>
 /* Asegúrate de que estas clases estén disponibles en tu configuración de Tailwind */
-.bg-transparent { background-color: rgba(0, 0, 0, 0.5); }
-.bg-black { background-color: #000; }
+.bg-transparent { background-color: rgba(255, 255, 255, 0.5); }
+.bg-white { background-color: #ffffff; }
 
 .color { color: #fff; }
 .color2 { color: blue; }
@@ -114,4 +114,9 @@ body::-webkit-scrollbar-thumb:hover {
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
+
+.titul {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 </style>

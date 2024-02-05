@@ -1,7 +1,7 @@
 <template>
   <section id="cursos" class="bg-gray-150 flex justify-center ">
     <div class="container w-full ">
-      <h2 class="text-center mb-4 text-4xl font-extrabold text-[#004d85]">ALGUNOS DE NUESTROS CURSOS</h2>
+      <h2 class="titlee text-center mb-4 text-4xl font-extrabold text-[#004d85]">ALGUNOS DE NUESTROS CURSOS</h2>
       <swiper
           :effect="'coverflow'"
           :grabCursor="true"
@@ -122,6 +122,9 @@ body {
   --swiper-navigation-size: 100px;
 }
 
+.titlee {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 </style>
 

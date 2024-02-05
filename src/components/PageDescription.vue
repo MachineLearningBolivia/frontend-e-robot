@@ -3,10 +3,10 @@
     <div class="container mx-auto">
       <div class="flex flex-col md:flex-row">
         <div class="md:w-1/2 mb-4 md:mb-0">
-          <h1 class="text-6xl font-extrabold text-white leading-tight">{{ title }}</h1>
+          <h1 class="title text-6xl font-extrabold leading-tight">{{ title }}</h1>
         </div>
         <div class="md:w-1/2 content-center">
-          <p class="text-lg font-semibold text-white">{{ description }}</p>
+          <p class="lead description text-lg font-semibold">{{ description }}</p>
         </div>
       </div>
 
@@ -25,3 +25,18 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.title {
+  font-weight: bold;
+  color: white; 
+  text-align: justify;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.description {
+  text-align: justify;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+</style>

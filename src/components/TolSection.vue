@@ -1,7 +1,7 @@
 <template>
   <section id="otros" class="pt-10 pb-10 bg-gray-100 justify-center">
     <div class="container mx-auto">
-      <h2 class="text-center mb-8 text-4xl font-extrabold text-[#004d85]">TAMBIÉN TE PUEDE INTERESAR</h2>
+      <h2 class="tit text-center mb-8 text-4xl font-extrabold text-[#004d85]">TAMBIÉN TE PUEDE INTERESAR</h2>
       <div class="flex flex-wrap justify-around mt-5">
         <div v-for="card in cards" :key="card.id" class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 mb-8">
           <div class="card-wrapper" @mouseover="toggleOverlay(card.id)" @mouseleave="toggleOverlay(card.id)">
@@ -21,7 +21,7 @@
           <!-- Nuevo boton con hipervínculo debajo de cada tarjeta -->
           <div class="text-center mt-2">
             <button @click="redirectToPage(card.id)"
-                    class="transition duration-500 ease-in-out bg-gray-800 hover:bg-[#061249] transform hover:-translate-y-1 hover:scale-110
+                    class="tit transition duration-500 ease-in-out bg-gray-800 hover:bg-[#061249] transform hover:-translate-y-1 hover:scale-110
                     text-white shadow-xl w-32 h-16 rounded-lg text-center font-bold">
               Nuestro Facebook
             </button>
@@ -117,6 +117,7 @@ export default {
   color: white;
   font-weight: bold;
   font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .card-wrapper:hover .card-hover-text {
@@ -138,6 +139,7 @@ export default {
   text-align: center;
   font-weight: bold;
   font-size: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .bigger-text {
@@ -163,4 +165,9 @@ export default {
   color: orange;
   font-weight: bold;
 }
+
+.tit {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 </style>
