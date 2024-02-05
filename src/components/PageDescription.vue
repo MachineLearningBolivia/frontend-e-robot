@@ -1,12 +1,12 @@
 <template>
-  <section id="descripcion" class="bg-orange-500 py-16 content-center">
+  <section id="descripcion" class="bg-[#001120] py-16 content-center">
     <div class="container mx-auto">
       <div class="flex flex-col md:flex-row">
         <div class="md:w-1/2 mb-4 md:mb-0">
-          <h1 class="text-6xl font-extrabold text-black leading-tight">{{ title }}</h1>
+          <h1 class="text-6xl font-extrabold text-white leading-tight">{{ title }}</h1>
         </div>
         <div class="md:w-1/2 content-center">
-          <p class="text-lg font-semibold text-black">{{ description }}</p>
+          <p class="text-lg font-semibold text-white">{{ description }}</p>
         </div>
       </div>
 
