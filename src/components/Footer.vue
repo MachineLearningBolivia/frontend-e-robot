@@ -1,6 +1,6 @@
 <template>
   <section id="informacion">
-    <footer class="bg-gray-800 py-5 text-white">
+    <footer class="bg-[#001120] py-5 text-white">
       <div class="container mx-auto flex items-center">
         <!-- Logo a la izquierda -->
         <div class="w-1/5">
