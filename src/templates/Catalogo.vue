@@ -79,7 +79,7 @@
   </div>
   <div class="flex mt-4">
     <div class="float-left ml-3 mr-3 hidden w-full sm:block">
-      <SfAccordionItem v-model="open2" class="md:max-w-[276px] ">
+      <SfAccordionItem v-model="open2" class=" md:max-w-[276px] ">
         <template #summary>
           <div class="flex justify-between p-2 mb-2 bg-primary-600 rounded-t-lg ">
             <p class="text-white text-xl font-semibold">Categorias</p>
@@ -170,7 +170,7 @@
             <div class="flex flex-col items-start p-4 grow">
               <p class="font-medium typography-text-base">{{ name }}</p>
               <p class="mt-1 mb-4 font-normal typography-text-sm text-neutral-700">{{ description }}</p>
-              <SfButton size="sm" variant="tertiary" class="relative mt-auto text-primary-900">
+              <SfButton size="sm" variant="tertiary" class="relative mt-auto text-primary-900 bg-primary-600">
                 <router-link :to="{ name: 'producto', params: { id: id } }">{{ button || 'Saber más' }}</router-link>
               </SfButton>
             </div>
@@ -226,14 +226,13 @@ const displayedItems = ref([]);
 const allItemsLoaded = ref(false);
 //categories var
 const categoriesItems = ref([]);
-const selectedCategory = ref(4);
+const selectedCategory = ref(-1);
 const imgInicial = ref("h");
 async function loadData() {
   try {
     const res = await getProduct();
     items.value = res.data;
     itemsDisplay.value = items.value.data;
-    itemsDisplayCarrusel.value = items.value.data;
     showCard.value = Array(itemsDisplay.value.length).fill(false);
     showCard.value.fill(true, 0, 3);
     load.value = false;
@@ -270,9 +269,10 @@ async function loadData() {
   }
   //console.log(itemsByCategories);
   itemsDisplay.value = itemsByCategories.value;
+  itemsDisplayCarrusel.value = itemsByCategories.value;
   const productoAleatorio = itemsDisplay.value[Math.floor(Math.random() * itemsDisplay.value.length)];
   itemsDisplayRandom.value = productoAleatorio;
-  console.log(itemsDisplayRandom);
+  //console.log(itemsDisplayRandom);
   isPageLoaded.value = false;
 }
 //filtrar itemsDisplay
@@ -482,12 +482,14 @@ const categories = ref([
 ]);
 //filtro de categorias
 const open2 = ref(false);
+const categoryFilterFlag = ref(true);
 const categoryFilter = async (phrase: string) => {
+  // Convertir la cadena a un número
+  const categoryId = parseInt(phrase, 10);
+  if (categoryFilterFlag.value || (categoryId!=(selectedCategory.value+1))) {
   const itemsDisplayLocal = ref([]);
   itemsDisplayLocal.value = items.value.data;
   //console.log(itemsDisplayLocal);
-  // Convertir la cadena a un número
-  const categoryId = parseInt(phrase, 10);
   //console.log(categoryId);
 
   const productosFiltrados = itemsDisplayLocal.value;
@@ -497,6 +499,12 @@ const categoryFilter = async (phrase: string) => {
   //console.log(productoFiltrado);
   itemsDisplay.value = productoFiltrado;
   selectedCategory.value = categoryId - 1;
+    categoryFilterFlag.value = false; 
+  }else{
+    categoryFilterFlag.value = true; 
+    selectedCategory.value = -1;
+    itemsDisplay.value = items.value.data;
+  };
 };
 //minipantalla de categorias
 const categoryProducts = ref([]);
