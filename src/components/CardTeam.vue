@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-2 gap-10 pt-8">
+  <section class="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-2 gap-10 pt-8">
     <div v-for="person in personal" class="flex flex-col pt-4 w-80 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <img class="place-self-center rounded-md w-72 h-auto" :src="person.imageSrc" alt="" />
       <div class="flex flex-col p-5">
@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
