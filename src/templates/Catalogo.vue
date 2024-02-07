@@ -1,33 +1,42 @@
 <template>
   <br><br><br><br>
-  <div v-if="isPageLoaded" class="flex items-center justify-center h-screen">
-    <SfLoaderCircular size="4xl"/>
+  <div v-if="isPageLoaded" class="fixed inset-0 z-50 flex items-center justify-center h-screen bg-white">
+    <SfLoaderCircular size="4xl" />
   </div>
-  <div class="relative min-h-[600px] mb-6 mx-auto">
-    <picture>
-      <source srcset="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/hero-bg.png"
-        media="(min-width: 768px)" />
-      <img src="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/hero-bg-mobile.png"
-        class="absolute w-full h-full z-[-1] md:object-cover" alt="hero" />
-    </picture>
-    <div class="md:flex md:flex-row md:justify-center max-w[1536px] mx-auto md:min-h-[600px]">
-      <div class="flex flex-col md:basis-2/4 md:items-stretch md:overflow-hidden">
-        <img :src="imgInicial" alt="Headphones" class="h-full object-cover object-left" />
-      </div>
-      <div class="p-4 md:p-10 md:max-w-[768px] md:flex md:flex-col md:justify-center md:items-start md:basis-2/4">
-        <p class="typography-text-xs md:typography-text-sm font-bold tracking-widest text-neutral-500 uppercase">
-          Maquinas de calidad
-        </p>
-        <h1 class="typography-display-2 md:typography-display-1 md:leading-[67.5px] font-bold mt-2 mb-4">
-          Nuevos maquinas disponibles para ti
-        </h1>
-        <p class="typography-text-base md:typography-text-lg">
-          Spatial audio. Adjustable ear cups. On-device controls. All-day battery.
-        </p>
-        <div class="flex flex-col md:flex-row gap-4 mt-6">
-          <SfButton size="lg"> Ordenar Ahora </SfButton>
-          <SfButton size="lg" variant="secondary" class="bg-white"> Saber mas </SfButton>
+  <div class="flex flex-col md:flex-row gap-6 max-w-screen-xl bg-primary-600">
+    <div class="relative flex-1">
+      <a class="absolute w-full h-full z-1 focus:outline-none rounded-lg" :aria-label="itemsDisplayRandom.name"
+        href="#"></a>
+      <div class="flex overflow-hidden">
+        <div class="flex flex-col justify-center items-start p-6 lg:p-10 max-w-1/2">
+          <h2 class="mb-4 mt-2 font-bold text-3xl text-white">
+            Horarios de atención
+          </h2>
+          <p class="text-base mb-4 text-white">
+            De lunes a Viernes
+            Desde las 9:00 a las 19:00 hrs
+          </p>
         </div>
+      </div>
+    </div>
+
+    <div class="relative flex-1 bg-white ">
+      <a class="absolute w-full h-full z-1 focus:outline-none rounded-lg" :aria-label="itemsDisplayRandom.name"
+        href="#"></a>
+      <div class="flex flex-row-reverse overflow-hidden">
+        <div class="flex flex-col justify-center items-start p-6 lg:p-10 max-w-1/2">
+          <p class="uppercase text-xs font-bold tracking-widest">
+            Tambien te puede interesar
+          </p>
+          <h2 class="mb-4 mt-2 font-bold text-3xl">
+            {{ itemsDisplayRandom.name }}
+          </h2>
+          <p class="text-base mb-4">
+            {{ itemsDisplayRandom.description }}
+          </p>
+          <SfButton class="bg-black">Saber más</SfButton>
+        </div>
+        <img :src="itemsDisplayRandom.image" alt="{{ itemsDisplayRandom.name }}" class="w-1/2 self-end object-contain" />
       </div>
     </div>
   </div>
@@ -41,7 +50,7 @@
           <SfIconChevronLeft />
         </SfButton>
       </template>
-      <div v-for="{ id, name, price, image } in itemsDisplay" :key="id"
+      <div v-for="{ id, name, price, image } in itemsDisplayCarrusel" :key="id"
         class="first:ms-auto last:me-auto border border-neutral-200 shrink-0 rounded-md hover:shadow-lg w-[148px] lg:w-[192px]">
         <div class="relative">
           <SfLink href="#" class="block">
@@ -69,15 +78,15 @@
     </SfScrollable>
   </div>
   <div class="flex mt-4">
-    <div class="float-left ml-3 mr-3 hidden sm:block">
-      <SfAccordionItem v-model="open2" class="w-full md:max-w-[476px] ">
+    <div class="float-left ml-3 mr-3 hidden w-full sm:block">
+      <SfAccordionItem v-model="open2" class="md:max-w-[276px] ">
         <template #summary>
           <div class="flex justify-between p-2 mb-2 bg-primary-600 rounded-t-lg ">
-            <p class="font-medium">Categorias</p>
-            <SfIconChevronLeft :class="open2 ? 'rotate-90' : '-rotate-90'" />
+            <p class="text-white text-xl font-semibold">Categorias</p>
+            <SfIconChevronLeft :class="{ 'rotate-90': open2, '-rotate-90': !open2, 'text-white': true }" />
           </div>
         </template>
-        <ul class="mt-2 mb-6 border border-neutral-200 border-primary-600 rounded-lg">
+        <ul class="mt-2 mb-6 border-2 border-neutral-500 border-primary-600 rounded-lg">
           <div v-if="isPageLoaded" class="flex items-center justify-center h-screen">
             <SfLoaderCircular size="4xl" />
           </div>
@@ -91,7 +100,7 @@
                 <SfIconCheck v-if="index === selectedCategory" size="sm" class="text-primary-700" />
               </template>
               <div>
-                <span class="flex items-center">
+                <span class="flex items-center tex-lg font-semibold">
                   {{ category.name }}
                 </span>
               </div>
@@ -153,7 +162,7 @@
         <div class="flex flex-wrap gap-4 lg:gap-6 justify-center">
           <div v-for="({ image, name, description, button, id }, index) in itemsDisplay" :key="`${name}-${index}`"
             v-show="showCard[index]"
-            class="flex flex-col items-center border border-neutral-200 rounded-md hover:shadow-xl transition-all duration-500 ease-in-out mb-4 lg:w-1/4 lg:mx-0"
+            class="flex flex-col items-center border border-neutral-200 rounded-md hover:shadow-2xl transition-all duration-500 ease-in-out mb-4 lg:w-1/4 lg:mx-0"
             :style="{ 'animation-delay': `${index * 100}ms` }">
             <a class="absolute inset-0 z-1 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-md"
               href="#" style="position: relative;" />
@@ -161,7 +170,7 @@
             <div class="flex flex-col items-start p-4 grow">
               <p class="font-medium typography-text-base">{{ name }}</p>
               <p class="mt-1 mb-4 font-normal typography-text-sm text-neutral-700">{{ description }}</p>
-              <SfButton size="sm" variant="tertiary" class="relative mt-auto">
+              <SfButton size="sm" variant="tertiary" class="relative mt-auto text-primary-900">
                 <router-link :to="{ name: 'producto', params: { id: id } }">{{ button || 'Saber más' }}</router-link>
               </SfButton>
             </div>
@@ -210,6 +219,8 @@ import { getCategoriesRequest } from "../../api/category.js"
 const items = ref([]);
 const load = ref(true);
 const itemsDisplay = ref([]);
+const itemsDisplayRandom = ref([]);
+const itemsDisplayCarrusel = ref([]);
 const showCard = ref([]);
 const displayedItems = ref([]);
 const allItemsLoaded = ref(false);
@@ -222,6 +233,7 @@ async function loadData() {
     const res = await getProduct();
     items.value = res.data;
     itemsDisplay.value = items.value.data;
+    itemsDisplayCarrusel.value = items.value.data;
     showCard.value = Array(itemsDisplay.value.length).fill(false);
     showCard.value.fill(true, 0, 3);
     load.value = false;
@@ -236,12 +248,31 @@ async function loadData() {
     const resCat = await getCategoriesRequest();
     categoriesItems.value = resCat.data;
     categories.value = categoriesItems.value.data;
-    console.log(categories.value);
-    console.log(categories);
+    //console.log(categories.value);
+    //console.log(categories);
 
   } catch (error) {
     console.error("Error al cargar datos", error);
   }
+  const itemsByCategories = ref([]);
+  for (let index = 1; index <= categories.value.length; index++) {
+    //Ver productosFiltrados
+    const itemsDisplayLocal = ref([]);
+    itemsDisplayLocal.value = items.value.data;
+    const productosFiltrados = itemsDisplayLocal.value;
+    // Filtrar productos de la categoría 
+
+    const productoFiltrado = productosFiltrados.filter(producto => producto.category_id === index);
+    // Seleccionar un producto aleatorio de la categoría
+    const productoAleatorio = productoFiltrado[Math.floor(Math.random() * productoFiltrado.length)];
+    // Añadir el producto aleatorio a la lista
+    itemsByCategories.value.push(productoAleatorio);
+  }
+  //console.log(itemsByCategories);
+  itemsDisplay.value = itemsByCategories.value;
+  const productoAleatorio = itemsDisplay.value[Math.floor(Math.random() * itemsDisplay.value.length)];
+  itemsDisplayRandom.value = productoAleatorio;
+  console.log(itemsDisplayRandom);
   isPageLoaded.value = false;
 }
 //filtrar itemsDisplay
@@ -454,16 +485,16 @@ const open2 = ref(false);
 const categoryFilter = async (phrase: string) => {
   const itemsDisplayLocal = ref([]);
   itemsDisplayLocal.value = items.value.data;
-  console.log(itemsDisplayLocal);
+  //console.log(itemsDisplayLocal);
   // Convertir la cadena a un número
   const categoryId = parseInt(phrase, 10);
-  console.log(categoryId);
+  //console.log(categoryId);
 
   const productosFiltrados = itemsDisplayLocal.value;
   // Filtrar productos de la categoría 
 
   const productoFiltrado = productosFiltrados.filter(producto => producto.category_id === categoryId);
-  console.log(productoFiltrado);
+  //console.log(productoFiltrado);
   itemsDisplay.value = productoFiltrado;
   selectedCategory.value = categoryId - 1;
 };
@@ -491,7 +522,7 @@ const showProducts = async (phrase: string) => {
 
   const productoFiltrado = productosFiltrados.filter(producto => producto.category_id === categoryId);
   itemsDisplayCategorized.value = productoFiltrado;
-  console.log(itemsDisplayCategorized);
+  //console.log(itemsDisplayCategorized);
 }
 const hideProducts = async () => {
   categoryProducts.value = "";
