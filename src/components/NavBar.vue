@@ -8,13 +8,14 @@
     </router-link>
     <div class="flex items-center justify-between w-60">
       <span @click="toggleWords" class="text-[#004f91] cursor-pointer">
-        <router-link to="/inicioo" class="hover:text-blue-500"><v-icon name="io-home" href="#portada" scale="1.7"/> </router-link>
+        <router-link to="/inicioo"  class="hover:text-blue-500"><v-icon name="io-home" href="#portada" scale="1.7"/> </router-link>
       </span>
       <transition name="fade">
         <div v-show="showWords" class="right-30 text-center justify-between">
           <a class="titul ml-1 text-[#001120] hover:text-blue-500" href="#cursos" @click="scrollTo('#cursos')">Cursos</a>
           <a class="titul ml-1 text-[#001120] hover:text-blue-500" href="#servicios" @click="scrollTo('#servicios')">Servicios</a>
           <a class="titul ml-1 text-[#001120] hover:text-blue-500" href="#otros" @click="scrollTo('#otros')">Otros</a>
+          <router-link to="/aboutus" class="titul ml-1 text-[#001120] hover:text-blue-500">Sobre nosotros</router-link>
         </div>
       </transition>
       <transition name="fade">
@@ -22,6 +23,7 @@
           <span class="ml-1 invisible">Cursos</span>
           <span class="ml-1 invisible">Servicios</span>
           <span class="ml-1 invisible">Otros</span>
+          <span class="ml-1 invisible">Sobre Nosotros</span>
         </div>
       </transition>
     </div>
@@ -42,7 +44,7 @@ import { RouterView } from 'vue-router';
 
 const isTransparent = ref(true);
 const showWords = ref(false);
-
+const open = ref(false);
 const handleScroll = () => {
   isTransparent.value = window.scrollY === 0;
 };
