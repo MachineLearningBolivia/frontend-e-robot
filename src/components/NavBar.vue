@@ -1,7 +1,7 @@
 <template>
   <nav :class="{ 'bg-transparent': isTransparent, 'bg-white': !isTransparent }" class="sticky top-0 z-50 h-20 flex items-center justify-between">
     <div class="flex items-center">
-      <img src="../assets/E-ROBOT-removebg.png" alt="Logo" class="h-16 mr-60" />
+      <img src="../assets/E-ROBOT-removebg.png" alt="Logo" class="h-16 " />
     </div>
     <router-link to="/" @click="toggleWordsnt" class="text-[#004f91] hover:text-blue-500">
       <v-icon name="io-storefront" scale="1.7"/>
