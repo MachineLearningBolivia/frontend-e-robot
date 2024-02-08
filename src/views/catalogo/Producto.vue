@@ -1,20 +1,21 @@
 <template>
+  <br><br><br>
   <div class="mt-5 mb-5"></div>
-  <div class="flex">
-    <div class="hidden md:block w-full md:w-[calc(100% - 640px)] mr-4">
+  <div class="flex flex-col md:flex-row">
+    <div class="w-full md:mr-4 md:ml-4">
       <img :src="item.image" alt="de la imagen" class="w-full h-auto">
     </div>
-    <section class="w-full md:w-[640px] float-right mr-4">
+    <section class="md:w-[1040px] mr-4">
       <div
         class="inline-flex items-center justify-center text-sm font-medium text-white bg-secondary-600 py-1.5 px-3 mb-4">
         <SfIconSell size="sm" class="mr-1.5" />
         A la venta
       </div>
-      <h1 class="mb-1 font-bold typography-headline-4">{{ item.name }}</h1>
-      <strong class="block font-bold typography-headline-3">{{ item.price }}</strong>
-      <ul class="mb-4 font-normal typography-text-sm">
+      <h1 class="mb-1 font-bold typography-headline-4 text-3xl">{{ item.name }}</h1>
+      <ul class="mb-4 font-normal typography-text-sm text-xl">
         <li>{{ item.description }} </li>
       </ul>
+      <strong class="block font-bold typography-headline-3 text-xl">{{ item.price }}</strong>
       <div class="py-4 mb-4 border-gray-200 border-y">
         <div class="items-start xs:flex">
           <div class="flex flex-col items-stretch xs:items-center xs:inline-flex">
@@ -48,7 +49,7 @@
         <SfIconPackage size="sm" class="flex-shrink-0 mr-1 text-neutral-500" />
         <p class="text-sm">
           No encuentras el producto que quieres?
-          <SfLink href="#" variant="secondary" class="mx-1"> Envianos tu correo</SfLink>
+          <SfLink href="#" variant="secondary" class="mx-1"> Envianos un mensaje</SfLink>
           para ayudar a econtrarlo
         </p>
       </div>
