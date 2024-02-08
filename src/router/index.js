@@ -5,6 +5,8 @@ import Producto from "/src/views/catalogo/Producto.vue";
 
 import Inicio from "/src/views/catalogo/Inicio.vue"
 import Inicioo from "/src/views/Inicioo.vue";
+import AboutUs from "/src/views/AboutUs.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -20,6 +22,10 @@ const router = createRouter({
     {
       path: "/inicioo",
       component: Inicioo
+    },
+    {
+      path: "/aboutus",
+      component: AboutUs
     },
     { path: "/", redirect: "/catalogo" },
     { path: "/:pathMatch(.*)*", redirect: "/catalogo" }, // Redirigir cualquier ruta no válida a /catalogo
