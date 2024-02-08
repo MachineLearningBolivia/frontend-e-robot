@@ -14,9 +14,9 @@
           <v-icon name="io-home" href="#portada" scale="1.7"/>
         </router-link>
         <ul class="dropdown">
-          <li><a class="submenuLi titul ml-1 text-white hover:text-blue-500" href="#cursos" @click="scrollTo('#cursos')">Cursos</a></li>
-          <li><a class="submenuLi titul ml-1 text-white hover:text-blue-500" href="#servicios" @click="scrollTo('#servicios')">Servicios</a></li>
-          <li><a class="submenuLi titul ml-1 text-white hover:text-blue-500" href="#otros" @click="scrollTo('#otros')">Otros</a></li>
+          <li><a class="submenuLi titul ml-1 text-white hover:text-blue-500" href="/inicioo#cursos" @click="navigateOrScroll('/inicioo', 'cursos')">Cursos</a></li>
+          <li><a class="submenuLi titul ml-1 text-white hover:text-blue-500" href="/inicioo#servicios" @click="navigateOrScroll('/inicioo', 'servicios')">Servicios</a></li>
+          <li><a class="submenuLi titul ml-1 text-white hover:text-blue-500" href="/inicioo#otros" @click="navigateOrScroll('/inicioo', 'otros')">Otros</a></li>
         </ul>
       </li>
       <li>
@@ -24,8 +24,8 @@
           <v-icon name="io-people-circle-outline" scale="1.7"/>
         </router-link>
         <ul class="dropdown">
-          <li><a class="submenuLi titul ml-1 text-white hover:text-blue-500" href="#personal" @click="scrollTo('#personal')">Personal</a></li>
-          <li><a class="submenuLi titul ml-1 text-white hover:text-blue-500" href="#mapa" @click="scrollTo('#mapa')">Ubicación</a></li>
+          <li><a class="submenuLi titul ml-1 text-white hover:text-blue-500" href="/aboutus#personal" @click="navigateOrScroll('/aboutus', 'personal')">Personal</a></li>
+          <li><a class="submenuLi titul ml-1 text-white hover:text-blue-500" href="/aboutus#mapa" @click="navigateOrScroll('/aboutus', 'mapa')">Ubicación</a></li>
         </ul>
       </li>
     </ul>
@@ -42,8 +42,8 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import { RouterView } from 'vue-router';
-
+import { RouterView, useRoute } from 'vue-router';
+const route = useRoute();
 const isTransparent = ref(true);
 const showWords = ref(false);
 const open = ref(false);
@@ -57,6 +57,34 @@ const toggleWords = () => {
 
 const toggleWordsnt = () => {
   showWords.value = false
+};
+
+const navigateOrScroll = (path, hash) => {
+  if (route.path === path) {
+    // Si ya estamos en la ruta correcta, solo hacemos el scroll
+    scrollTo(hash);
+  } else {
+    // Si no estamos en la ruta correcta, navegamos y luego hacemos el scroll
+    router.push({ path: path });
+
+    // Esperar a que se complete la navegación y luego desplazarse
+    router.afterEach(() => {
+      scrollTo(hash);
+    });
+  }
+};
+
+const scrollTo = (hash) => {
+  const targetElement = document.querySelector(hash);
+  if (targetElement) {
+    const offsetTop = targetElement.offsetTop;
+    const offsetParent = targetElement.offsetParent;
+
+    window.scrollTo({
+      top: offsetTop - offsetParent.offsetTop,
+      behavior: 'smooth',
+    });
+  }
 };
 
 onMounted(() => {
