@@ -9,7 +9,7 @@
       <div
         class="inline-flex items-center justify-center text-sm font-medium text-white bg-secondary-600 py-1.5 px-3 mb-4">
         <SfIconSell size="sm" class="mr-1.5" />
-        A la venta
+        {{ item.status ? 'A la venta' : 'Agotado' }}
       </div>
       <h1 class="mb-1 font-bold typography-headline-4 text-3xl">{{ item.name }}</h1>
       <ul class="mb-4 font-normal typography-text-sm text-xl">
@@ -49,7 +49,8 @@
         <SfIconPackage size="sm" class="flex-shrink-0 mr-1 text-neutral-500" />
         <p class="text-sm">
           No encuentras el producto que quieres?
-          <SfLink href="#" variant="secondary" class="mx-1"> Envianos un mensaje</SfLink>
+          <SfLink href="#" variant="secondary" class="mx-1" @click="sendWhatssapMessageConsulta()"> Envianos un mensaje
+          </SfLink>
           para ayudar a econtrarlo
         </p>
       </div>
@@ -57,7 +58,8 @@
         <SfIconWarehouse size="sm" class="flex-shrink-0 mr-1 text-neutral-500" />
         <p class="text-sm">
           No sabes donde recoger tus productos
-          <SfLink href="#" variant="secondary" class="ml-1"> Te mostramos nuestras sucursales</SfLink>
+          <SfLink href="#" variant="secondary" class="ml-1" @click="paginaUbicacion()"> Te mostramos nuestras sucursales
+          </SfLink>
         </p>
       </div>
       <div class="flex mt-4">
@@ -115,7 +117,7 @@ const item = ref([]);
 
 async function loadData() {
   try {
-    console.log(productId.value);
+    //console.log(productId.value);
 
     const res = await getOneProduct(productId.value);
     item.value = res.data.product;
@@ -129,7 +131,7 @@ async function loadData() {
 const cargarProducto = () => {
   // Obtén el ID del producto de los parámetros de la ruta
   productId.value = route.params.id;
-  console.log(productId);
+  //console.log(productId);
   // Aquí, simplemente se simula un objeto de producto.
   const mockProduct = {
     id: productId,
@@ -150,10 +152,32 @@ onMounted(() => {
 //Mandar mensaje
 const sendWhatssapMessage = () => {
   const numeroTelefono = '+591 62426763'; // Reemplaza con el número de teléfono de destino (debe estar en formato internacional)
-  const mensaje = '¡Hola, quisiera pedir ' + count.value + ' ' + item.value.name; // Mensaje personalizado
+  const mensaje = '¡Hola, quisiera pedir ' + count.value + ' ' + item.value.name + '\nNombre:' + '\nCI:'; // Mensaje personalizado
   // Genera el enlace de WhatsApp
   const linkWhatsApp = `https://api.whatsapp.com/send?phone=${encodeURIComponent(numeroTelefono)}&text=${encodeURIComponent(mensaje)}`;
   // Abre el enlace en una nueva ventana o pestaña
   window.open(linkWhatsApp, '_blank');
+};
+//Mandar mensaje consulta
+const sendWhatssapMessageConsulta = () => {
+  const numeroTelefono = '+591 62426763'; // Reemplaza con el número de teléfono de destino (debe estar en formato internacional)
+  const mensaje = '¡Hola, quisiera saber si tiene el siguiente producto: ';   // Genera el enlace de WhatsApp
+  const linkWhatsApp = `https://api.whatsapp.com/send?phone=${encodeURIComponent(numeroTelefono)}&text=${encodeURIComponent(mensaje)}`;
+  // Abre el enlace en una nueva ventana o pestaña
+  window.open(linkWhatsApp, '_blank');
+};
+//Mandar mensaje atencion al cliente
+const sendWhatssapMessageAtencion = () => {
+  const numeroTelefono = '+591 62426763'; // Reemplaza con el número de teléfono de destino (debe estar en formato internacional)
+  const mensaje = '¡Hola, tengo una consulta o queja: ';   // Genera el enlace de WhatsApp
+  const linkWhatsApp = `https://api.whatsapp.com/send?phone=${encodeURIComponent(numeroTelefono)}&text=${encodeURIComponent(mensaje)}`;
+  // Abre el enlace en una nueva ventana o pestaña
+  window.open(linkWhatsApp, '_blank');
+};
+
+const paginaUbicacion = () => {
+  const link = `http://localhost:5173/aboutus#personal`;
+  // Abre el enlace en una nueva ventana o pestaña
+  window.open(link, '_blank');
 };
 </script>
