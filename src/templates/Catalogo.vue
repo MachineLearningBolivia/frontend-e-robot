@@ -21,8 +21,6 @@
     </div>
 
     <div class="relative flex-1 bg-white ">
-      <a class="absolute w-full h-full z-1 focus:outline-none rounded-lg" :aria-label="itemsDisplayRandom.name"
-        href="#"></a>
       <div class="flex flex-row-reverse overflow-hidden">
         <div class="flex flex-col justify-center items-start p-6 lg:p-10 max-w-1/2">
           <p class="uppercase text-xs font-bold tracking-widest">
@@ -34,7 +32,9 @@
           <p class="text-base mb-4">
             {{ itemsDisplayRandom.description }}
           </p>
-          <SfButton class="bg-black">Saber más</SfButton>
+          <SfButton class="bg-black">
+            <router-link :to="{ name: 'producto', params: { id: idItemsDisplayRandom } }">'Saber más'</router-link>
+          </SfButton>
         </div>
         <img :src="itemsDisplayRandom.image" alt="{{ itemsDisplayRandom.name }}" class="w-1/2 self-end object-contain" />
       </div>
@@ -52,7 +52,8 @@
       </template>
       <div v-for="{ id, name, price, image } in itemsDisplayCarrusel" :key="id"
         class="first:ms-auto last:me-auto border border-neutral-200 shrink-0 rounded-md hover:shadow-lg w-[148px] lg:w-[192px]">
-        <div class="relative">
+        <div class="relative" >
+          <router-link :to="{ name: 'producto', params: { id: id } }">
           <SfLink href="#" class="block">
             <img :src="image" :alt="name"
               class="block object-cover h-auto rounded-md aspect-square lg:w-[190px] lg:h-[190px]" width="146"
@@ -63,6 +64,7 @@
             aria-label="Add to wishlist">
             <SfIconFavorite size="sm" />
           </SfButton>
+          </router-link>
         </div>
         <div class="p-2 border-t border-neutral-200 typography-text-sm">
           <SfLink href="#" variant="secondary" class="no-underline">{{ name }}</SfLink>
@@ -220,6 +222,7 @@ const items = ref([]);
 const load = ref(true);
 const itemsDisplay = ref([]);
 const itemsDisplayRandom = ref([]);
+const idItemsDisplayRandom = ref(0);
 const itemsDisplayCarrusel = ref([]);
 const showCard = ref([]);
 const displayedItems = ref([]);
@@ -272,7 +275,7 @@ async function loadData() {
   itemsDisplayCarrusel.value = itemsByCategories.value;
   const productoAleatorio = itemsDisplay.value[Math.floor(Math.random() * itemsDisplay.value.length)];
   itemsDisplayRandom.value = productoAleatorio;
-  //console.log(itemsDisplayRandom);
+  idItemsDisplayRandom.value = productoAleatorio.id;
   isPageLoaded.value = false;
 }
 //filtrar itemsDisplay
