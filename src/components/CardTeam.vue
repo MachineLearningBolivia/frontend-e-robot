@@ -1,20 +1,20 @@
 <template>
   <section class="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-2 gap-10 pt-8">
-    <div v-for="person in personal" class="flex flex-col pt-4 w-44 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-80">
+    <div v-for="person in personal" class="flex flex-col pt-4 w-44 md:w-80 bg-gray-800 border border-gray-200 rounded-lg shadow dark:border-gray-700 ">
       <img class="place-self-center rounded-md w-72 h-auto" :src="person.imageSrc" alt="" />
       <div class="flex flex-col p-5">
-        <h5 class="titlee mb-2 text-center text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{person.namePerson}}</h5>
+        <h5 class="titlee mb-2 text-center text-xl font-bold tracking-tight text-white">{{person.namePerson}}</h5>
         <div class="flex gap-3 justify-center">
           <v-icon name="io-phone-portrait" class="text-white"/>
           <a :href="'https://api.whatsapp.com/send?phone=' + person.cellphone + '&text=Hola,%20vengo%20de%20la%20pagina%20de%20EROBOT%20mi%20duda%20es%20la%20siguiente:'">
-            <p class="titlee mb-3 font-normal text-gray-700 dark:text-gray-400">
+            <p class="titlee mb-3 font-normal text-gray-400">
             {{person.cellphone}}
             </p>
           </a>
         </div>
         <div class="flex gap-3 justify-center">
           <v-icon name="io-person" class="text-white"/>
-          <p class="titlee mb-3 font-normal text-gray-700 dark:text-gray-400">{{person.cargo}}</p>
+          <p class="titlee mb-3 font-normal text-gray-400">{{person.cargo}}</p>
         </div>
       </div>
     </div>
