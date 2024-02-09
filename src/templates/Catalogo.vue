@@ -9,12 +9,18 @@
         href="#"></a>
       <div class="flex overflow-hidden">
         <div class="flex flex-col justify-center items-start p-6 lg:p-10 max-w-1/2">
-          <h2 class="mb-4 mt-2 font-bold text-3xl text-white">
-            Horarios de atención
+          <h2 class="mb-4 mt-2 font-bold text-2xl text-white">
+            🌟 Haz Tu Pedido en el Momento Perfecto! ⌛
           </h2>
-          <p class="text-base mb-4 text-white">
-            De lunes a Viernes
-            Desde las 9:00 a las 19:00 hrs
+          <p class="text-base text-white">
+            Queremos asegurarnos de estar disponibles cuando más nos necesitas. Por eso, te compartimos nuestros horarios
+            de atención para que puedas planificar tus compras con facilidad:<br>
+            🕒 Horarios de Atención:<br>
+
+            🌞 Lunes a Viernes:<br>
+
+            Mañanas: 9:00 am - 1:00 pm<br>
+            Tardes: 2:00 pm - 6:00 pm<br>
           </p>
         </div>
       </div>
@@ -33,10 +39,52 @@
             {{ itemsDisplayRandom.description }}
           </p>
           <SfButton class="bg-black">
-            <router-link :to="{ name: 'producto', params: { id: idItemsDisplayRandom } }">'Saber más'</router-link>
+            <router-link :to="{ name: 'producto', params: { id: idItemsDisplayRandom } }">Saber más</router-link>
           </SfButton>
         </div>
         <img :src="itemsDisplayRandom.image" alt="{{ itemsDisplayRandom.name }}" class="w-1/2 self-end object-contain" />
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col md:flex-row gap-6 max-w-screen-xl bg-primary-800">
+    <div class="flex justify-center items-center p-6 lg:p-10 max-w-1/2 text-white my-auto">
+      <div class="mr-4">
+        <h2 class="mb-4 mt-2 font-bold text-2xl">
+          🛍️ ¿Listo para hacer tu pedido? ¡Te lo haremos fácil y rápido!
+        </h2>
+        <p class="text-base text-white">
+          👋 Estamos emocionados de ayudarte a conseguir el producto que deseas. Realizar un pedido es muy sencillo, solo
+          sigue estos simples pasos
+        </p>
+        <p class="text-base mb-4 text-white">
+          ¡Listo para disfrutar! Una vez confirmado el pedido, solo queda esperar a que lleguen tus productos y
+          disfrutar de la calidad que ofrecemos.<br>
+          ¡No dudes en preguntar si necesitas ayuda o tienes alguna pregunta adicional! Estamos aquí para hacer tu
+          experiencia de compra lo más placentera posible. 😊🚚<br>
+        </p>
+      </div>
+      <div>
+        <h3 class="mb-4 mt-2 font-bold text-base">
+          Explora nuestra selección
+        </h3>
+        <p class="text-base mb-4 text-white">
+          Echa un vistazo a nuestro catalogo para descubrir nuestros
+          productos de alta calidad y selecciona lo que te encanta.<br>
+        </p>
+        <h3 class="mb-4 mt-2 font-bold text-base">
+          Presionna el boton "🛒Pedir producto"
+        </h3>
+        <p class="text-base mb-4 text-white">
+          Envíanos un mensaje con los productos que deseas junto con la cantidad y
+          tu nombre
+        </p>
+        <h3 class="mb-4 mt-2 font-bold text-base">
+          Confirmación de pedido
+        </h3>
+        <p class="text-base mb-4 text-white">
+          Te responderemos lo antes posible para confirmar tu pedido y coordinar los detalles de
+          entrega y pago.
+        </p>
       </div>
     </div>
   </div>
@@ -52,18 +100,18 @@
       </template>
       <div v-for="{ id, name, price, image } in itemsDisplayCarrusel" :key="id"
         class="first:ms-auto last:me-auto border border-neutral-200 shrink-0 rounded-md hover:shadow-lg w-[148px] lg:w-[192px]">
-        <div class="relative" >
+        <div class="relative">
           <router-link :to="{ name: 'producto', params: { id: id } }">
-          <SfLink href="#" class="block">
-            <img :src="image" :alt="name"
-              class="block object-cover h-auto rounded-md aspect-square lg:w-[190px] lg:h-[190px]" width="146"
-              height="146" />
-          </SfLink>
-          <SfButton variant="tertiary" size="sm" square
-            class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full"
-            aria-label="Add to wishlist">
-            <SfIconFavorite size="sm" />
-          </SfButton>
+            <SfLink href="#" class="block">
+              <img :src="image" :alt="name"
+                class="block object-cover h-auto rounded-md aspect-square lg:w-[190px] lg:h-[190px]" width="146"
+                height="146" />
+            </SfLink>
+            <SfButton variant="tertiary" size="sm" square
+              class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full"
+              aria-label="Add to wishlist">
+              <SfIconFavorite size="sm" />
+            </SfButton>
           </router-link>
         </div>
         <div class="p-2 border-t border-neutral-200 typography-text-sm">
@@ -80,7 +128,7 @@
     </SfScrollable>
   </div>
   <div class="flex mt-4">
-    <div class="float-left ml-3 mr-3 hidden w-full sm:block">
+    <div class="float-left ml-3 mr-3 hidden sm:block">
       <SfAccordionItem v-model="open2" class=" md:max-w-[276px] ">
         <template #summary>
           <div class="flex justify-between p-2 mb-2 bg-primary-600 rounded-t-lg ">
@@ -179,7 +227,7 @@
           </div>
         </div>
         <div class="flex flex-wrap justify-center w-full">
-          <SfButton v-if="!allItemsLoaded" class="w-80 mt-4 " @click="loadMore"> Mostrar Más </SfButton>
+          <SfButton v-if="!allItemsLoaded" class="w-80 mt-4 mb-4" @click="loadMore"> Mostrar Más </SfButton>
         </div>
       </div>
     </div>
@@ -321,7 +369,6 @@ watch(
 function handleScroll() {
   if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
     // Se está acercando al final de la página, cargar más tarjetas
-    loadMore();
   }
 }
 //buscador
@@ -491,22 +538,22 @@ const categoryFilterFlag = ref(true);
 const categoryFilter = async (phrase: string) => {
   // Convertir la cadena a un número
   const categoryId = parseInt(phrase, 10);
-  if (categoryFilterFlag.value || (categoryId!=(selectedCategory.value+1))) {
-  const itemsDisplayLocal = ref([]);
-  itemsDisplayLocal.value = items.value.data;
-  //console.log(itemsDisplayLocal);
-  //console.log(categoryId);
+  if (categoryFilterFlag.value || (categoryId != (selectedCategory.value + 1))) {
+    const itemsDisplayLocal = ref([]);
+    itemsDisplayLocal.value = items.value.data;
+    //console.log(itemsDisplayLocal);
+    //console.log(categoryId);
 
-  const productosFiltrados = itemsDisplayLocal.value;
-  // Filtrar productos de la categoría 
+    const productosFiltrados = itemsDisplayLocal.value;
+    // Filtrar productos de la categoría 
 
-  const productoFiltrado = productosFiltrados.filter(producto => producto.category_id === categoryId);
-  //console.log(productoFiltrado);
-  itemsDisplay.value = productoFiltrado;
-  selectedCategory.value = categoryId - 1;
-    categoryFilterFlag.value = false; 
-  }else{
-    categoryFilterFlag.value = true; 
+    const productoFiltrado = productosFiltrados.filter(producto => producto.category_id === categoryId);
+    //console.log(productoFiltrado);
+    itemsDisplay.value = productoFiltrado;
+    selectedCategory.value = categoryId - 1;
+    categoryFilterFlag.value = false;
+  } else {
+    categoryFilterFlag.value = true;
     selectedCategory.value = -1;
     itemsDisplay.value = items.value.data;
   };
