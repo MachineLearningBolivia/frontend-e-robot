@@ -107,6 +107,7 @@ body {
   height: 400px;
 }
 
+
 .swiper-slide img {
   display: block;
   width: 100%;
