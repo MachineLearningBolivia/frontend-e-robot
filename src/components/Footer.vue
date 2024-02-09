@@ -1,6 +1,6 @@
 <template>
   <section id="informacion">
-    <footer class="bg-[#001120] py-5 text-white">
+    <footer class="bg-[#001120] py-5 px-0 md:px-10 text-white">
       <div class="container mx-auto flex items-center">
         <!-- Logo a la izquierda -->
         <div class="w-1/5">
@@ -10,7 +10,6 @@
           <div class="text-center">
             <!-- Texto genérico -->
             <p class="titu mb-2">&copy; 2023 E-ROBOT. Todos los derechos reservados.</p>
-            <!-- <p class="mb-2">Términos de Servicio | Política de Privacidad</p> -->
           </div>
         </div>
         <div class="flex space-x-4">
@@ -36,11 +35,7 @@ export default {
 </script>
 
 <style>
-.footer {
-  background-color: #333;
-  padding: 20px 0;
-  color: #fff;
-}
+
 
 .footer .container {
   max-width: 1200px;

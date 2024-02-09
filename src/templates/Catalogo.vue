@@ -184,6 +184,7 @@
       </div>
     </div>
   </div>
+  <Footer></Footer>
 </template>
 <script lang="ts" setup>
 // Importa useRouter desde vue-router
@@ -217,6 +218,7 @@ import { type Ref, ref, onMounted, watch, nextTick } from "vue";
 import { getProduct } from "../../api/product.js"
 //category
 import { getCategoriesRequest } from "../../api/category.js"
+import Footer from '../components/Footer.vue';
 //catalogo var
 const items = ref([]);
 const load = ref(true);
