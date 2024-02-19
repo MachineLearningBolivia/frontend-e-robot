@@ -3,7 +3,7 @@
   <div v-if="isPageLoaded" class="fixed inset-0 z-50 flex items-center justify-center h-screen bg-white">
     <SfLoaderCircular size="4xl" />
   </div>
-  <div class="flex flex-col md:flex-row gap-6 max-w-screen-xl bg-primary-600">
+  <div class="flex flex-col md:flex-row gap-6 bg-primary-600">
     <div class="relative flex-1">
       <a class="absolute w-full h-full z-1 focus:outline-none rounded-lg" :aria-label="itemsDisplayRandom.name"
         href="#"></a>
@@ -26,9 +26,9 @@
       </div>
     </div>
 
-    <div class="relative flex-1 bg-white ">
-      <div class="flex flex-row-reverse overflow-hidden">
-        <div class="flex flex-col justify-center items-start p-6 lg:p-10 max-w-1/2">
+    <div class="relative flex-1 bg-white">
+      <div class="flex flex-row-reverse overflow-hidden w-full">
+        <div class="flex flex-col justify-center items-start p-6 lg:p-10 w-full">
           <p class="uppercase text-xs font-bold tracking-widest">
             Tambien te puede interesar
           </p>
@@ -42,12 +42,12 @@
             <router-link :to="{ name: 'producto', params: { id: idItemsDisplayRandom } }">Saber más</router-link>
           </SfButton>
         </div>
-        <img :src="itemsDisplayRandom.image" alt="{{ itemsDisplayRandom.name }}" class="w-1/2 self-end object-contain" />
+        <img :src="itemsDisplayRandom.image" alt="{{ itemsDisplayRandom.name }}" class="h-full object-contain" />
       </div>
     </div>
   </div>
-  <div class="flex flex-col md:flex-row gap-6 max-w-screen-xl bg-primary-800">
-    <div class="flex justify-center items-center p-6 lg:p-10 max-w-1/2 text-white my-auto">
+  <div class="flex flex-col md:flex-row gap-6 bg-primary-800">
+    <div class="flex flex-1 justify-center items-center p-6 lg:p-10 text-white my-auto">
       <div class="mr-4">
         <h2 class="mb-4 mt-2 font-bold text-2xl">
           🛍️ ¿Listo para hacer tu pedido? ¡Te lo haremos fácil y rápido!
@@ -99,13 +99,12 @@
         </SfButton>
       </template>
       <div v-for="{ id, name, price, image } in itemsDisplayCarrusel" :key="id"
-        class="first:ms-auto last:me-auto border border-neutral-200 shrink-0 rounded-md hover:shadow-lg w-[148px] lg:w-[192px]">
+        class="first:ms-auto last:me-auto border border-neutral-200 shrink-0 rounded-md hover:shadow-lg w-[148px] h-[236px] lg:w-[192px]">
         <div class="relative">
           <router-link :to="{ name: 'producto', params: { id: id } }">
             <SfLink href="#" class="block">
-              <img :src="image" :alt="name"
-                class="block object-cover h-auto rounded-md aspect-square lg:w-[190px] lg:h-[190px]" width="146"
-                height="146" />
+              <img :src="image" :alt="name" class="block object-cover rounded-md aspect-square lg:w-[190px] lg:h-[190px]"
+                width="146" height="146" />
             </SfLink>
             <SfButton variant="tertiary" size="sm" square
               class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full"
@@ -115,7 +114,7 @@
           </router-link>
         </div>
         <div class="p-2 border-t border-neutral-200 typography-text-sm">
-          <SfLink href="#" variant="secondary" class="no-underline">{{ name }}</SfLink>
+          <SfLink href="#" variant="secondary" class="no-underline line-clamp-2">{{ name }}</SfLink>
           <span class="block mt-2 font-bold">{{ price }}</span>
         </div>
       </div>
@@ -127,6 +126,11 @@
       </template>
     </SfScrollable>
   </div>
+  <SfButton aria-label="Open categories"
+    class="fixed top-20 left-0 z-49 sm:hidden lg:hidden order-first lg:order-1 bg-white rounded-full" square
+    @click="openCategoryPhone()" variant="tertiary">
+    <SfIconMenu />
+  </SfButton>
   <div class="flex mt-4">
     <div class="float-left ml-3 mr-3 hidden sm:block">
       <SfAccordionItem v-model="open2" class=" md:max-w-[276px] ">
@@ -159,6 +163,38 @@
         </ul>
       </SfAccordionItem>
     </div>
+    <div class="fixed top-20 left-0 z-50 ml-3 mr-3" v-if="openCategoriesPhone">
+      <SfAccordionItem v-model="openCategoriesPhone" class=" md:max-w-[276px] ">
+        <template #summary>
+          <div class="flex justify-between p-2 mb-2 bg-primary-600 rounded-t-lg ">
+            <p class="text-white text-xl font-semibold">Categorias</p>
+            <SfIconChevronLeft
+              :class="{ 'rotate-90': openCategoriesPhone, '-rotate-90': !openCategoriesPhone, 'text-white': true }" />
+          </div>
+        </template>
+        <ul class="mt-2 mb-6 border-2 border-neutral-500 border-primary-600 rounded-lg bg-white">
+          <div v-if="isPageLoaded" class="flex items-center justify-center h-screen">
+            <SfLoaderCircular size="4xl" />
+          </div>
+          <li v-for="(category, index) in categories" :key="category.key">
+            <SfListItem @mouseover="showProducts(category.id)" @mouseout="hideProducts" size="sm" tag="a"
+              :href="category.link" :class="[
+                'first-of-type:mt-2 rounded-md active:bg-primary-100',
+                { 'bg-primary-100 hover:bg-primary-100 active:bg-primary-100 font-medium': index === selectedCategory },
+              ]" @click="categoryFilter(category.id)">
+              <template #suffix>
+                <SfIconCheck v-if="index === selectedCategory" size="sm" class="text-primary-700" />
+              </template>
+              <div>
+                <span class="flex items-center tex-lg font-semibold">
+                  {{ category.name }}
+                </span>
+              </div>
+            </SfListItem>
+          </li>
+        </ul>
+      </SfAccordionItem>
+    </div>
     <div v-if="!hoveredCategory" role="alert" :style="{ top: `${hoverPositionTop}px`, left: `${hoverPositionLeft}px` }"
       class=" absolute bg-neutral-100 max-w-[600px] shadow-md pr-2 pl-4 ring-1 ring-neutral-300 typography-text-sm md:typography-text-base py-1 rounded-md ">
       <p class="py-2">{{ categoryProducts }}</p>
@@ -166,7 +202,7 @@
         <p class="font-medium typography-text-base">{{ name }}</p>
       </div>
     </div>
-    <div>
+    <div class="w-full">
       <div class="mb-4">
         <form ref="referenceRef" role="search" class="relative" @submit.prevent="submit">
           <div class="flex">
@@ -260,6 +296,8 @@ import {
   SfIconFavorite,
   SfIconChevronRight,
   SfScrollable,
+  SfIconMenu,
+  SfIconExpandMore
 } from '@storefront-ui/vue';
 //catalogo
 import { type Ref, ref, onMounted, watch, nextTick } from "vue";
@@ -534,6 +572,7 @@ const categories = ref([
 ]);
 //filtro de categorias
 const open2 = ref(false);
+const openCategoriesPhone = ref(false);
 const categoryFilterFlag = ref(true);
 const categoryFilter = async (phrase: string) => {
   // Convertir la cadena a un número
@@ -587,5 +626,8 @@ const showProducts = async (phrase: string) => {
 const hideProducts = async () => {
   categoryProducts.value = "";
   hoveredCategory.value = true;
+}
+const openCategoryPhone = async () => {
+  openCategoriesPhone.value = true;
 }
 </script>
