@@ -2,7 +2,7 @@
   <br><br><br>
   <div class="mt-5 mb-5"></div>
   <div class="flex flex-col md:flex-row">
-    <div class="w-6/12 md:mr-4 md:ml-4">
+    <div class="w-6/12 md:mr-4 md:ml-4 mx-auto">
       <img :src="item.image" alt="de la imagen" class="w-full h-auto">
     </div>
     <section class="md:w-[1040px] mr-4">

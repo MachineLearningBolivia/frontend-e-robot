@@ -3,8 +3,8 @@
   <div v-if="isPageLoaded" class="fixed inset-0 z-50 flex items-center justify-center h-screen bg-white">
     <SfLoaderCircular size="4xl" />
   </div>
-  <div class="flex flex-col md:flex-row gap-6 bg-primary-600">
-    <div class="relative flex-1">
+  <div class="flex flex-col md:flex-row gap-6 bg-white items-center justify-center">
+    <div class="relative flex-1 bg-primary-600">
       <a class="absolute w-full h-full z-1 focus:outline-none rounded-lg" :aria-label="itemsDisplayRandom.name"
         href="#"></a>
       <div class="flex overflow-hidden">
@@ -27,7 +27,7 @@
     </div>
 
     <div class="relative flex-1 bg-white">
-      <div class="flex flex-row-reverse overflow-hidden w-full">
+      <div class="flex flex-row-reverse overflow-hidden items-center">
         <div class="flex flex-col justify-center items-start p-6 lg:p-10 w-full">
           <p class="uppercase text-xs font-bold tracking-widest">
             Tambien te puede interesar
@@ -245,16 +245,17 @@
         </form>
       </div>
       <div>
-        <div class="flex flex-wrap gap-4 lg:gap-6 justify-center">
+        <div class="flex flex-wrap gap-4 md:gap-10 lg:gap-9 justify-center">
           <div v-for="({ image, name, description, button, id }, index) in itemsDisplay" :key="`${name}-${index}`"
             v-show="showCard[index]"
-            class="flex flex-col items-center border border-neutral-200 rounded-md hover:shadow-2xl transition-all duration-500 ease-in-out mb-4 lg:w-1/4 lg:mx-0"
+            class="flex flex-col items-center border border-neutral-200 rounded-md hover:shadow-2xl transition-all duration-500 ease-in-out mb-4 sm:w-full md:w-1/3 lg:w-1/4 xl:w-1/5 w-full"
             :style="{ 'animation-delay': `${index * 100}ms` }">
             <a class="absolute inset-0 z-1 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-md"
               href="#" style="position: relative;" />
-            <img :src="image" :alt="name" class="object-cover h-auto rounded-t-md aspect-video" />
-            <div class="flex flex-col items-start p-4 grow">
-              <p class="font-medium typography-text-base">{{ name }}</p>
+            <img :src="image" :alt="name"
+              class="object-cover h-auto rounded-t-md aspect-video lg:w-[290px] lg:h-[290px] md:w-[390px] sm:w-full sm:h-full w-full" />
+            <div class="flex flex-col md:items-start p-4 grow sm:items-center">
+              <p class="font-medium xl:text-base xs:text-4xl sm:text-2xl">{{ name }}</p>
               <p class="mt-1 mb-4 font-normal typography-text-sm text-neutral-700">{{ description }}</p>
               <SfButton size="sm" variant="tertiary" class="relative mt-auto text-primary-900 bg-primary-600">
                 <router-link :to="{ name: 'producto', params: { id: id } }">{{ button || 'Saber más' }}</router-link>
