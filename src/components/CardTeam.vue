@@ -33,9 +33,9 @@ export default{
       personal:[
         {
           imageSrc: foto1,
-          namePerson: 'Ing. Osmar Gabriel Peñaloza Burgoa',
-          cellphone: '+591 79666663',
-          cargo: 'Gerente General'
+          namePerson: 'Ing. Clever Mendoza',
+          cellphone: '+591 73735363',
+          cargo: 'Docente Robótica'
         },
         {
           imageSrc: foto1,
@@ -43,18 +43,7 @@ export default{
           cellphone: '+591 68060853',
           cargo: 'Jefe Planta de Producción'
         },
-        {
-          imageSrc: foto1,
-          namePerson: 'Ing. Edwin Condori Quispe',
-          cellphone: '+591 78753973',
-          cargo: 'Jefe de Diseño Mecánico'
-        },
-        {
-          imageSrc: foto1,
-          namePerson: 'Samuel Alejandro Aguilar Rodríguez',
-          cellphone: '+591 61172951',
-          cargo: 'Jefe Organización Industrial'
-        }]
+        ]
     }
   }
 }
